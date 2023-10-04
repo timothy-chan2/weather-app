@@ -1,4 +1,7 @@
 import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/image';
+
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -10,9 +13,25 @@ export default function Home() {
       </Head>
 
       <main className={styles.container}>
-        <h1 className={styles.title}>
-          Unknown city
-        </h1>
+        <section>
+          <h1 className={styles.title}>
+            Unknown city
+          </h1>
+          <p>October 4, 2023</p>
+        </section>
+        <section>
+          <section>
+            <h2>0<sup>°C</sup></h2>
+            <p>Cloudy</p>
+          </section>
+          <Image src="" alt="Weather icon" />
+        </section>
+        <section>
+          <button>Save Info</button>
+          <Link href="/history">
+            <button>My History</button>
+          </Link>
+        </section>
       </main>
 
       <style jsx>{`
