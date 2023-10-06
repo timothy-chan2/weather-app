@@ -52,13 +52,17 @@
   margin-top: 3rem;
 }
 
-.save {
+.btn {
   color: #000;
-  background: rgb(2, 187, 2);
   padding: 15px 30px;
   font-size: 1.1rem;
   border: none;
   border-radius: 6px;
+  cursor: pointer;
+}
+
+.save {
+  background: rgb(2, 187, 2);
 }
 
 .save:hover, .save:focus, .save:active {
@@ -66,12 +70,7 @@
 }
 
 .history {
-  color: #000;
   background: yellow;
-  padding: 15px 30px;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 6px;
 }
 
 .history:hover, .history:focus, .history:active {
