@@ -16,6 +16,18 @@
   text-align: center;
 }
 
+@media (max-width: 600px) {
+  .city {  
+    font-size: 2.3rem;
+  }
+}
+
+@media (min-width: 600px) {
+  .city {  
+    font-size: 3rem;
+  }
+}
+
 .date {
   font-size: 1.1rem;
 }
@@ -34,14 +46,34 @@
   font-size: 2.5rem;
 }
 
-@media (max-width: 600px) {
-  .city {  
-    font-size: 2.3rem;
-  }
+.btnContainer {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 3rem;
 }
 
-@media (min-width: 600px) {
-  .city {  
-    font-size: 3rem;
-  }
+.save {
+  color: #000;
+  background: rgb(2, 187, 2);
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+}
+
+.save:hover, .save:focus, .save:active {
+  background: rgb(2, 152, 2);
+}
+
+.history {
+  color: #000;
+  background: yellow;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+}
+
+.history:hover, .history:focus, .history:active {
+  background: rgb(216, 216, 3);
 }

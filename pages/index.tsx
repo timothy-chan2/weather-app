@@ -26,10 +26,10 @@ export default function Home() {
           </section>
           <Image src="" alt="Weather icon" />
         </section>
-        <section>
-          <button>Save Info</button>
+        <section className={styles.btnContainer}>
+          <button className={styles.save}>Save Info</button>
           <Link href="/history">
-            <button>My History</button>
+            <button className={styles.history}>My History</button>
           </Link>
         </section>
       </main>
