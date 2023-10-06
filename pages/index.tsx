@@ -14,14 +14,14 @@ export default function Home() {
 
       <main className={styles.container}>
         <section>
-          <h1 className={styles.title}>
+          <h1 className={styles.city}>
             Unknown city
           </h1>
-          <p>October 4, 2023</p>
+          <p className={styles.date}>October 4, 2023</p>
         </section>
-        <section>
-          <section>
-            <h2>0<sup>°C</sup></h2>
+        <section className={styles.conditions}>
+          <section className={styles.tempContainer}>
+            <h2 className={styles.temp}>0<sup>°C</sup></h2>
             <p>Cloudy</p>
           </section>
           <Image src="" alt="Weather icon" />
