@@ -46,6 +46,10 @@
   font-size: 2.5rem;
 }
 
+.celcius {
+  font-size: 1.5rem;
+}
+
 .btnContainer {
   display: flex;
   gap: 1.5rem;

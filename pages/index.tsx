@@ -21,7 +21,7 @@ export default function Home() {
         </section>
         <section className={styles.conditions}>
           <section className={styles.tempContainer}>
-            <h2 className={styles.temp}>0<sup>°C</sup></h2>
+            <h2 className={styles.temp}>0<sup className={styles.celcius}>°C</sup></h2>
             <p>Cloudy</p>
           </section>
           <Image src="" alt="Weather icon" />
