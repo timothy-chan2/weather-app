@@ -75,7 +75,7 @@
   background: rgb(2, 187, 2);
 }
 
-.save:hover, .save:focus, .save:active {
+.save:is(:hover, :focus, :active) {
   background: rgb(2, 152, 2);
 }
 
@@ -83,6 +83,6 @@
   background: yellow;
 }
 
-.history:hover, .history:focus, .history:active {
+.history:is(:hover, :focus, :active) {
   background: rgb(216, 216, 3);
 }
