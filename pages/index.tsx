@@ -1,8 +1,20 @@
+import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 
 import styles from '../styles/Home.module.css';
+
+type WeatherSummary = {
+  temp: number,
+  description: string,
+  icon: string
+}
+
+type Props = {
+  weatherSummary: WeatherSummary,
+  city: string
+}
 
 export default function Home() {
   return (
@@ -35,4 +47,31 @@ export default function Home() {
       </main>
     </>
   );
+}
+
+export const getStaticProps: GetStaticProps<Props> = async (context) => {
+  const ipRequest = await fetch(`http://ip-api.com/json/`);
+  const ipData = await ipRequest.json();
+  const city = ipData.regionName;
+
+  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},&appid=${process.env.WEATHER_API_KEY}&units=metric`;
+  const weatherRequest = await fetch(url);
+  const weatherInfo = await weatherRequest.json();
+
+  const weatherSummary: WeatherSummary = {
+    temp: weatherInfo.main.temp,
+    description: weatherInfo.weather[0].description,
+    icon: weatherInfo.weather[0].icon
+  }
+
+  // console.log(weatherSummary);
+
+  const props: Props = {
+    weatherSummary,
+    city
+  }
+
+  return {
+    props
+  };
 }
