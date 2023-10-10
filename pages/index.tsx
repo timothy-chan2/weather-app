@@ -1,4 +1,4 @@
-import type { GetStaticProps } from 'next';
+import type { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -49,7 +49,7 @@ export default function Home() {
   );
 }
 
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
   const ipRequest = await fetch(`http://ip-api.com/json/`);
   const ipData = await ipRequest.json();
   const city = ipData.regionName;
