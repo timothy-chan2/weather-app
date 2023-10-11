@@ -35,7 +35,7 @@ export default function Home({ weatherSummary, city, region }) {
         <section className={styles.conditions}>
           <section className={styles.tempContainer}>
             <h2 className={styles.temp}>{ Math.round(weatherSummary.temp) }<sup className={styles.celcius}>°C</sup></h2>
-            <p>{ weatherSummary.description }</p>
+            <p className={styles.desc}>{ weatherSummary.description }</p>
           </section>
           <Image src="" alt={`${ weatherSummary.description } icon`} />
         </section>
