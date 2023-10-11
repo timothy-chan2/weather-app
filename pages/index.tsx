@@ -13,10 +13,11 @@ type WeatherSummary = {
 
 type Props = {
   weatherSummary: WeatherSummary,
-  city: string
+  city: string,
+  region: string
 }
 
-export default function Home({ weatherSummary, city }) {
+export default function Home({ weatherSummary, city, region }) {
   return (
     <>
       <Head>
@@ -27,7 +28,7 @@ export default function Home({ weatherSummary, city }) {
       <main className={styles.container}>
         <section>
           <h1 className={styles.city}>
-            Unknown city
+            { city }, { region }
           </h1>
           <p className={styles.date}>October 4, 2023</p>
         </section>
@@ -52,7 +53,8 @@ export default function Home({ weatherSummary, city }) {
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
   const ipRequest = await fetch(`http://ip-api.com/json/`);
   const ipData = await ipRequest.json();
-  const city = ipData.regionName;
+  const city = ipData.city;
+  const region = ipData.regionName;
 
   const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},&appid=${process.env.WEATHER_API_KEY}&units=metric`;
   const weatherRequest = await fetch(url);
@@ -68,7 +70,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
 
   const props: Props = {
     weatherSummary,
-    city
+    city,
+    region
   }
 
   return {
