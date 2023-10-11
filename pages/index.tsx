@@ -16,7 +16,7 @@ type Props = {
   city: string
 }
 
-export default function Home() {
+export default function Home({ weatherSummary, city }) {
   return (
     <>
       <Head>
@@ -33,10 +33,10 @@ export default function Home() {
         </section>
         <section className={styles.conditions}>
           <section className={styles.tempContainer}>
-            <h2 className={styles.temp}>0<sup className={styles.celcius}>°C</sup></h2>
-            <p>Cloudy</p>
+            <h2 className={styles.temp}>{ Math.round(weatherSummary.temp) }<sup className={styles.celcius}>°C</sup></h2>
+            <p>{ weatherSummary.description }</p>
           </section>
-          <Image src="" alt="Weather icon" />
+          <Image src="" alt={`${ weatherSummary.description } icon`} />
         </section>
         <section className={styles.btnContainer}>
           <button className={`${styles.save} ${styles.btn}`}>Save Info</button>
