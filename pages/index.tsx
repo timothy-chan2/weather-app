@@ -34,7 +34,9 @@ export default function Home({ weatherSummary, city, region }) {
         </section>
         <section className={styles.conditions}>
           <section className={styles.tempContainer}>
-            <h2 className={styles.temp}>{ Math.round(weatherSummary.temp) }<sup className={styles.celcius}>°C</sup></h2>
+            <h2 className={styles.temp}>
+              { Math.round(weatherSummary.temp) }<sup className={styles.celcius}>°C</sup>
+            </h2>
             <p className={styles.desc}>{ weatherSummary.description }</p>
           </section>
           <Image
@@ -61,7 +63,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
   const city = ipData.city;
   const region = ipData.regionName;
 
-  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},&appid=${process.env.WEATHER_API_KEY}&units=metric`;
+  const apiKey = process.env.WEATHER_API_KEY;
+  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},&appid=${apiKey}&units=metric`;
   const weatherRequest = await fetch(url);
   const weatherInfo = await weatherRequest.json();
 
