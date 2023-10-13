@@ -18,6 +18,12 @@ type Props = {
 };
 
 export default function Home({ weatherSummary, city, region }) {
+  // Get the current date
+  const date = new Date();
+  const day = date.getDate();
+  const month = date.toLocaleString("default", { month: "long" });
+  const year = date.getFullYear();
+  
   return (
     <>
       <Head>
@@ -30,7 +36,7 @@ export default function Home({ weatherSummary, city, region }) {
           <h1 className={styles.city}>
             { city }, { region }
           </h1>
-          <p className={styles.date}>October 4, 2023</p>
+          <p className={styles.date}>{ month + " " + day + ", " + year }</p>
         </section>
         <section className={styles.conditions}>
           <section className={styles.tempContainer}>
