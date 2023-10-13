@@ -37,7 +37,12 @@ export default function Home({ weatherSummary, city, region }) {
             <h2 className={styles.temp}>{ Math.round(weatherSummary.temp) }<sup className={styles.celcius}>°C</sup></h2>
             <p className={styles.desc}>{ weatherSummary.description }</p>
           </section>
-          <Image src="" alt={`${ weatherSummary.description } icon`} />
+          <Image
+            src={`http://openweathermap.org/img/wn/${weatherSummary.icon}@4x.png`}
+            alt={`${ weatherSummary.description } icon`}
+            width="150"
+            height="150"
+          />
         </section>
         <section className={styles.btnContainer}>
           <button className={`${styles.save} ${styles.btn}`}>Save Info</button>
