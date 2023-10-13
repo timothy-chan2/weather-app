@@ -9,13 +9,13 @@ type WeatherSummary = {
   temp: number,
   description: string,
   icon: string
-}
+};
 
 type Props = {
   weatherSummary: WeatherSummary,
   city: string,
   region: string
-}
+};
 
 export default function Home({ weatherSummary, city, region }) {
   return (
@@ -72,15 +72,13 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
     temp: weatherInfo.main.temp,
     description: weatherInfo.weather[0].description,
     icon: weatherInfo.weather[0].icon
-  }
-
-  // console.log(weatherSummary);
+  };
 
   const props: Props = {
     weatherSummary,
     city,
     region
-  }
+  };
 
   return {
     props
