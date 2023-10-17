@@ -36,6 +36,17 @@ export default function Home({ weatherSummary, city, region }) {
       temp: roundedTemp,
       description: weatherSummary.description
     };
+
+    const previousDataString = localStorage.getItem("weatherHistory");
+    let previousData = JSON.parse(previousDataString);
+
+    if (previousData === null) {
+      previousData = [];
+    }
+
+    previousData.push(weatherData);
+    localStorage.setItem("weatherHistory", JSON.stringify(previousData));
+    alert("Weather saved successfully!");
   };
 
   return (
