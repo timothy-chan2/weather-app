@@ -24,7 +24,20 @@ export default function Home({ weatherSummary, city, region }) {
   const month = date.toLocaleString("default", { month: "long" });
   const year = date.getFullYear();
   const time = date.toLocaleTimeString();
+
+  // Calculate the temperature rounded to the nearest integer
+  const roundedTemp = Math.round(weatherSummary.temp);
   
+  const saveWeather = () => {
+    const weatherData = {
+      date: `${ month + " " + day + ", " + year }`,
+      time: time,
+      city: city,
+      temp: roundedTemp,
+      description: weatherSummary.description
+    };
+  };
+
   return (
     <>
       <Head>
@@ -42,7 +55,7 @@ export default function Home({ weatherSummary, city, region }) {
         <section className={styles.conditions}>
           <section className={styles.tempContainer}>
             <h2 className={styles.temp}>
-              { Math.round(weatherSummary.temp) }<sup className={styles.celcius}>°C</sup>
+              { roundedTemp }<sup className={styles.celcius}>°C</sup>
             </h2>
             <p className={styles.desc}>{ weatherSummary.description }</p>
           </section>
