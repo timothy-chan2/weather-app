@@ -40,14 +40,26 @@ export default function Home({ weatherSummary, city, region }) {
 
     const previousDataString = localStorage.getItem("weatherHistory");
     let previousData = JSON.parse(previousDataString);
+    let isDuplicate = false;
 
     if (previousData === null) {
       previousData = [];
     }
 
-    previousData.push(weatherData);
-    localStorage.setItem("weatherHistory", JSON.stringify(previousData));
-    alert("Weather saved successfully!");
+    if (previousData.length > 0) {
+      const lastWeatherData = previousData[previousData.length - 1];
+      
+      if (lastWeatherData.fullDate === date) {
+        isDuplicate = true;
+        alert("Weather data is already saved.");
+      }
+    }
+    
+    if (isDuplicate === false) {
+      previousData.push(weatherData);
+      localStorage.setItem("weatherHistory", JSON.stringify(previousData));
+      alert("Weather saved successfully!");
+    }
   };
 
   return (
