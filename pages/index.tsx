@@ -30,6 +30,7 @@ export default function Home({ weatherSummary, city, region }) {
   
   const saveWeather = () => {
     const weatherData = {
+      fullDate: date,
       date: `${ month + " " + day + ", " + year }`,
       time: time,
       city: city,
