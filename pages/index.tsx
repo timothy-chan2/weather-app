@@ -17,6 +17,15 @@ type Props = {
   region: string
 };
 
+type WeatherData = {
+  fullDate: Date,
+  date: string,
+  time: string,
+  city: string,
+  temp: number,
+  description: string
+};
+
 export default function Home({ weatherSummary, city, region }) {
   // Get the current date
   const date = new Date();
@@ -29,7 +38,7 @@ export default function Home({ weatherSummary, city, region }) {
   const roundedTemp = Math.round(weatherSummary.temp);
   
   const saveWeather = () => {
-    const weatherData = {
+    const weatherData: WeatherData = {
       fullDate: date,
       date: `${ month + " " + day + ", " + year }`,
       time: time,
