@@ -59,8 +59,6 @@ export default function Home({ weatherSummary, city, region }) {
     if (previousData.length > 0) {
       const lastWeatherData = previousData[previousData.length - 1];
       
-      console.log("lastWeatherData.fullDate is " + lastWeatherData.fullDate);
-      console.log("date is " + date);
       if (lastWeatherData.fullDate === milliseconds) {
         isDuplicate = true;
         alert("Weather data is already saved.");
