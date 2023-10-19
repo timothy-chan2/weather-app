@@ -18,7 +18,7 @@ type Props = {
 };
 
 type WeatherData = {
-  fullDate: Date,
+  fullDate: number,
   date: string,
   time: string,
   city: string,
@@ -29,6 +29,7 @@ type WeatherData = {
 export default function Home({ weatherSummary, city, region }) {
   // Get the current date
   const date = new Date();
+  const milliseconds = Date.parse(date.toString());
   const day = date.getDate();
   const month = date.toLocaleString("default", { month: "long" });
   const year = date.getFullYear();
@@ -39,7 +40,7 @@ export default function Home({ weatherSummary, city, region }) {
   
   const saveWeather = () => {
     const weatherData: WeatherData = {
-      fullDate: date,
+      fullDate: milliseconds,
       date: `${ month + " " + day + ", " + year }`,
       time: time,
       city: city,
@@ -58,7 +59,9 @@ export default function Home({ weatherSummary, city, region }) {
     if (previousData.length > 0) {
       const lastWeatherData = previousData[previousData.length - 1];
       
-      if (lastWeatherData.fullDate === date) {
+      console.log("lastWeatherData.fullDate is " + lastWeatherData.fullDate);
+      console.log("date is " + date);
+      if (lastWeatherData.fullDate === milliseconds) {
         isDuplicate = true;
         alert("Weather data is already saved.");
       }
@@ -100,7 +103,7 @@ export default function Home({ weatherSummary, city, region }) {
           />
         </section>
         <section className={styles.btnContainer}>
-          <button className={`${styles.save} ${styles.btn}`}>Save Info</button>
+          <button onClick={saveWeather} className={`${styles.save} ${styles.btn}`}>Save Info</button>
           <Link href="/history">
             <button className={`${styles.history} ${styles.btn}`}>My History</button>
           </Link>
