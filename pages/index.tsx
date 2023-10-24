@@ -22,6 +22,7 @@ type WeatherData = {
   date: string,
   time: string,
   city: string,
+  region: string,
   temp: number,
   description: string
 };
@@ -44,6 +45,7 @@ export default function Home({ weatherSummary, city, region }) {
       date: `${ month + " " + day + ", " + year }`,
       time: time,
       city: city,
+      region: region,
       temp: roundedTemp,
       description: weatherSummary.description
     };
