@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 const History = () => {
+  const [weatherHistory, setWeatherHistory] = useState([]);
+  
   return (
     <>
       <h1>My Weather History</h1>
