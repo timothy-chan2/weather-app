@@ -1,7 +1,17 @@
 import { useState } from 'react';
 
+type WeatherData = {
+  fullDate: number,
+  date: string,
+  time: string,
+  city: string,
+  region: string,
+  temp: number,
+  description: string
+};
+
 const History = () => {
-  const [weatherHistory, setWeatherHistory] = useState([]);
+  const [weatherHistory, setWeatherHistory] = useState<WeatherData[]>([]);
   
   return (
     <>
