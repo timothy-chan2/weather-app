@@ -1,4 +1,6 @@
 import type { GetServerSideProps } from 'next';
+import '../types/types';
+
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -15,16 +17,6 @@ type Props = {
   weatherSummary: WeatherSummary,
   city: string,
   region: string
-};
-
-type WeatherData = {
-  fullDate: number,
-  date: string,
-  time: string,
-  city: string,
-  region: string,
-  temp: number,
-  description: string
 };
 
 export default function Home({ weatherSummary, city, region }) {
