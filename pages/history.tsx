@@ -18,7 +18,7 @@ const History = () => {
   return (
     <>
       <h1>My Weather History</h1>
-      {weatherHistory.length > 0 ? (
+      {weatherHistory !== null ? (
         weatherHistory.map((weather, index) => {
           return (
             <section key={index}>
