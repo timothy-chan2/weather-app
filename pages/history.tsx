@@ -1,23 +1,36 @@
 import '../types/types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const History = () => {
   const [weatherHistory, setWeatherHistory] = useState<WeatherData[]>([]);
-  
-  if (localStorage.weatherHistory !== undefined) {
-    setWeatherHistory(JSON.parse(localStorage.weatherHistory));
-  }
+
+  useEffect(() => {
+    const previousHistoryString = localStorage.getItem("weatherHistory");
+    let previousHistory = JSON.parse(previousHistoryString);
+
+    if (previousHistory !== undefined) {
+      setWeatherHistory(previousHistory);
+    }
+  }, []);
 
   return (
     <>
       <h1>My Weather History</h1>
-      <section>
-        <h2>Montreal, Quebec</h2>
-        <h3>October 23, 2023</h3>
-        <p>11:00 PM</p>
-        <p>Temperature: 30<sup>°C</sup></p>
-        <p>Condition: Cloudy</p>
-      </section>
+      {weatherHistory.length > 0 ? (
+        weatherHistory.map((weather, index) => {
+          return (
+            <section key={index}>
+              <h2>{weather.city}, {weather.region}</h2>
+              <h3>{weather.date}</h3>
+              <p>{weather.time}</p>
+              <p>Temperature: {weather.temp}<sup>°C</sup></p>
+              <p>Condition: {weather.description}</p>
+            </section>
+          );
+        })
+      ) : (
+        <p>No saved weather data</p>
+      )}
     </>
   );
 }
