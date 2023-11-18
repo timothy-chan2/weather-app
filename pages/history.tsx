@@ -1,5 +1,7 @@
-import '../types/types';
 import { useState, useEffect } from 'react';
+import '../types/types';
+
+import Link from 'next/link';
 
 const History = () => {
   const [weatherHistory, setWeatherHistory] = useState<WeatherData[]>([]);
@@ -31,6 +33,9 @@ const History = () => {
       ) : (
         <p>No saved weather data</p>
       )}
+      <Link href="/">
+        <button>Back</button>
+      </Link>
     </>
   );
 }
