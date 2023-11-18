@@ -4,6 +4,10 @@ import { useState } from 'react';
 const History = () => {
   const [weatherHistory, setWeatherHistory] = useState<WeatherData[]>([]);
   
+  if (localStorage.weatherHistory !== undefined) {
+    setWeatherHistory(JSON.parse(localStorage.weatherHistory));
+  }
+
   return (
     <>
       <h1>My Weather History</h1>
