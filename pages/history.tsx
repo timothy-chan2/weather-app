@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import '../types/types';
 
+import Head from 'next/head';
 import Link from 'next/link';
 
 const History = () => {
@@ -17,25 +18,32 @@ const History = () => {
 
   return (
     <>
-      <h1>My Weather History</h1>
-      {weatherHistory !== null ? (
-        weatherHistory.map((weather, index) => {
-          return (
-            <section key={index}>
-              <h2>{weather.city}, {weather.region}</h2>
-              <h3>{weather.date}</h3>
-              <p>{weather.time}</p>
-              <p>Temperature: {weather.temp}<sup>°C</sup></p>
-              <p>Condition: {weather.description}</p>
-            </section>
-          );
-        })
-      ) : (
-        <p>No saved weather data</p>
-      )}
-      <Link href="/">
-        <button>Back</button>
-      </Link>
+      <Head>
+        <title>Saved Weather History</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      
+      <main>
+        <h1>My Weather History</h1>
+        {weatherHistory !== null ? (
+          weatherHistory.map((weather, index) => {
+            return (
+              <section key={index}>
+                <h2>{weather.city}, {weather.region}</h2>
+                <h3>{weather.date}</h3>
+                <p>{weather.time}</p>
+                <p>Temperature: {weather.temp}<sup>°C</sup></p>
+                <p>Condition: {weather.description}</p>
+              </section>
+            );
+          })
+        ) : (
+          <p>No saved weather data</p>
+        )}
+        <Link href="/">
+          <button>Back</button>
+        </Link>
+      </main>
     </>
   );
 }
