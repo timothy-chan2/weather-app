@@ -9,13 +9,32 @@
   align-items: center;
 }
 
+.log {
+  border: 1px solid;
+  padding: 5px 50px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.h2 {
+  margin-bottom: 5px;
+}
+
+.h3 {
+  margin-top: 5px;
+}
+
+.desc {
+  text-transform: capitalize;
+}
+
 .btn {
   padding: 12px 30px;
   font-size: 1.1rem;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .history {

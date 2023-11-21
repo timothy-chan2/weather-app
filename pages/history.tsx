@@ -30,12 +30,12 @@ const History = () => {
         {weatherHistory !== null ? (
           weatherHistory.map((weather, index) => {
             return (
-              <section key={index}>
-                <h2>{weather.city}, {weather.region}</h2>
-                <h3>{weather.date}</h3>
+              <section key={index} className={styles.log}>
+                <h2 className={styles.h2}>{weather.city}, {weather.region}</h2>
+                <h3 className={styles.h3}>{weather.date}</h3>
                 <p>{weather.time}</p>
                 <p>Temperature: {weather.temp}<sup>°C</sup></p>
-                <p>Condition: {weather.description}</p>
+                <p className={styles.desc}>Condition: {weather.description}</p>
               </section>
             );
           })
