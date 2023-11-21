@@ -4,6 +4,8 @@ import '../types/types';
 import Head from 'next/head';
 import Link from 'next/link';
 
+import styles from '../styles/History.module.css';
+
 const History = () => {
   const [weatherHistory, setWeatherHistory] = useState<WeatherData[]>([]);
 
@@ -23,7 +25,7 @@ const History = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <main>
+      <main className={styles.container}>
         <h1>My Weather History</h1>
         {weatherHistory !== null ? (
           weatherHistory.map((weather, index) => {
@@ -41,7 +43,7 @@ const History = () => {
           <p>No saved weather data</p>
         )}
         <Link href="/">
-          <button>Back</button>
+          <button className={`${styles.history} ${styles.btn}`}>Back</button>
         </Link>
       </main>
     </>
