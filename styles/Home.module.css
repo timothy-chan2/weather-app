@@ -15,6 +15,7 @@
   left: 0;
   display: flex;
   padding-left: 20px;
+  width: 100%;
 }
 
 .nav {
