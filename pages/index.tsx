@@ -74,17 +74,25 @@ export default function Home({ weatherSummary, city, region }) {
       </Head>
 
       <main className={styles.container}>
+        <header className={styles.navbar}>
+          <h1>WeatherApp</h1>
+          <nav className={styles.nav}>
+            <ul className={styles.menu}>
+              <li><a href="#">Link1</a></li>
+            </ul>
+          </nav>
+        </header>
         <section>
-          <h1 className={styles.city}>
+          <h2 className={styles.city}>
             { city }, { region }
-          </h1>
+          </h2>
           <p className={styles.date}>{ month + " " + day + ", " + year }</p>
         </section>
         <section className={styles.conditions}>
           <section className={styles.tempContainer}>
-            <h2 className={styles.temp}>
+            <h3 className={styles.temp}>
               { roundedTemp }<sup className={styles.celcius}>°C</sup>
-            </h2>
+            </h3>
             <p className={styles.desc}>{ weatherSummary.description }</p>
           </section>
           <Image
