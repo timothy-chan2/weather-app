@@ -14,3 +14,5 @@ const Spacestagram = () => {
     </>
   );
 }
+
+export default Spacestagram;
