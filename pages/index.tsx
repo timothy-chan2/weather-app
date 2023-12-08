@@ -78,7 +78,7 @@ export default function Home({ weatherSummary, city, region }) {
           <h1>WeatherApp</h1>
           <nav className={styles.nav}>
             <ul className={styles.menu}>
-              <li><a href="#">Link1</a></li>
+              <li><Link href="/spacestagram">Spacestagram</Link></li>
             </ul>
           </nav>
         </header>
