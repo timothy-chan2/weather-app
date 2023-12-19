@@ -1,0 +1,36 @@
+.loadingDropdown {
+  margin-bottom: 1em;
+}
+
+.loadingDropdownBtn {
+  color: var(--light-blue);
+  background-color: var(--dark);
+  border: 2px solid var(--light-blue);
+}
+
+.loadingDropdownBtn:hover, .loadingDropdownBtn:focus {
+  color: var(--dark);
+  background-color: var(--light-blue);
+}
+
+#loadingChoices {
+  background-color: var(--darker);
+  margin: 0 auto;
+  border-radius: 8px;
+  max-width: 200px;
+  padding: 10px;
+}
+
+.loadingOptionBtn {
+  color: var(--light-blue);
+  background-color: var(--dark);
+  border: 2px solid var(--light-blue);
+  margin: 4px;
+}
+
+.loadingOptionBtnSelected, .loadingOptionBtn:hover, .loadingOptionBtn:focus {
+  color: var(--dark);
+  background-color: var(--light-blue);
+  border: 2px solid var(--light-blue);
+  margin: 4px;
+}
