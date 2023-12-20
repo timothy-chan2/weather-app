@@ -1,0 +1,64 @@
+.post {
+  background-color: var(--darker);
+  width: 90vw;
+  margin: 0 auto 1em auto;
+  border-radius: 8px;
+  box-shadow: 8px 8px 3px var(--shadow);
+}
+
+.postImg {
+  width: 90vw;
+  border-radius: 8px 8px 0 0;
+}
+
+.postVid {
+  border: 0;
+  height: 50vw;
+}
+
+.postVid:hover {
+  outline: 2px solid var(--red);
+}
+
+.postTitle {
+  color: var(--yellow);
+  margin: 1em 0.35em;
+}
+
+.postDesc {
+  padding: 0 1em;
+  text-align: left;
+}
+
+@media screen and (min-width: 992px) {
+  .post {
+    width: 70vw;
+    margin: 0 auto 3em auto;
+    border-radius: 12px;
+  }
+  
+  .postImg {
+    width: 70vw;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .postVid {
+    height: 40vw;
+  }
+
+  .postDesc {
+    padding: 0 2em;
+  }
+}
+
+.postLikeBtn {
+  color: var(--light-blue);
+  background-color: var(--darker);
+  border: 2px solid var(--light-blue);
+  margin-bottom: 1.5em;
+}
+
+.postLikeBtn:hover, .postLikeBtn:focus {
+  color: var(--darker);
+  background-color: var(--light-blue);
+}

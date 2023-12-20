@@ -1,6 +1,8 @@
 import { useState, useMemo } from 'react';
 import { getLongDate, getCurrentTime } from '../helpers/selectors';
 
+import styles from '../styles/Post.module.css';
+
 // The Post component shows an image and the title, date,
 // description, and like or unlike button related to it
 const Post = (props) => {
@@ -30,7 +32,7 @@ const Post = (props) => {
         <img
           src={props.url}
           aria-labelledby={props.id}
-          className='post-img'
+          className={styles.postImg}
           data-testid='image'
         />
       }
@@ -38,7 +40,7 @@ const Post = (props) => {
         <iframe
           src={props.url}
           aria-labelledby={props.id}
-          className='post-img post-vid'
+          className={`${styles.postImg} ${styles.postVid}`}
           title={props.title}
           loading='lazy'
           data-testid='video'
@@ -46,15 +48,15 @@ const Post = (props) => {
           <p>Your browser does not support iframes.</p>
         </iframe>
       }
-      <h3 className='post-title'>
+      <h3 className={styles.postTitle}>
         {props.title} - {longDate}
         {likeStatus === 'Unlike' && <span id={`${props.id}-like`}> ❤️</span>}
       </h3>
-      <p id={props.id} className='post-desc'>{props.description}</p>
+      <p id={props.id} className='postDesc'>{props.description}</p>
       <button
         aria-label='Like or unlike the picture'
         onClick={() => clickLikeUnlike()}
-        className='post-like-btn'
+        className={styles.postLikeBtn}
         type='button'
         aria-controls={`${props.id}-like`}
       >
