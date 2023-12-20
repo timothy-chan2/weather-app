@@ -1,5 +1,7 @@
 import { useState, useEffect, Fragment } from 'react';
 
+import styles from '../styles/ScrollTopBtn.module.css';
+
 // The ScrollTopBtn component shows that button to scroll to the top of the page
 const ScrollTopBtn = () => {
   const [showScrollTopBtn, setShowScrollTopBtn] = useState(false);
@@ -27,7 +29,7 @@ const ScrollTopBtn = () => {
         <button
           aria-label='Scroll to the top of the page'
           onClick={scrollToTop}
-          className='scroll-top-btn'
+          className={styles.scrollTopBtn}
           type='button'
         >
           &#11014;

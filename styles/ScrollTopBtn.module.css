@@ -1,0 +1,23 @@
+.scrollTopBtn {
+  color: var(--pink);
+  background-color: var(--dark);
+  border: 2px solid var(--pink);
+  position: fixed;
+  bottom: 55px;
+  right: 10px;
+  font-size: 2em;
+  border-radius: 50%;
+  padding: 0.4em 0.4em;
+}
+
+.scrollTopBtn:hover, .scrollTopBtn:focus {
+  color: var(--darker);
+  background-color: var(--pink);
+}
+
+@media screen and (min-width: 992px) {
+  .scrollTopBtn {
+    background-color: var(--darker);
+    right: 30px;
+  }
+}
