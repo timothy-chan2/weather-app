@@ -1,7 +1,25 @@
+import { useState, useEffect } from 'react';
+
 import Head from 'next/head';
+import { useRouter } from "next/router";
+
+import Post from '../components/post';
+import Loading from '../components/loading';
+import LoadingDots from '../components/loadingDots';
+import LoadingIconPicker from '../components/loadingIconPicker';
+import ScrollTopBtn from '../components/scrollTopBtn';
+
+import { getShortDate } from '../helpers/selectors';
 
 const Spacestagram = ({ apodInfo }) => {
-  console.log(apodInfo);
+  const router = useRouter();
+  const todaysDate = getShortDate(new Date());
+  const [date, setDate] = useState(todaysDate);
+  
+  useEffect(() => {
+    router.replace(`/spacestagram?date=${date}`, '/spacestagram');
+    console.log(apodInfo);
+  }, [date]);
   
   return (
     <>
@@ -23,8 +41,15 @@ const Spacestagram = ({ apodInfo }) => {
 }
 
 export const getServerSideProps = async (context) => {
+  let  { date } = context.query;
+
+  if (date === undefined) {
+    const todaysDate = getShortDate(new Date());
+    date = todaysDate;
+  }
+  console.log('Date = ' + date);
   const apiKey = process.env.NASA_API_KEY;
-  const url = `https://api.nasa.gov/planetary/apod?start_date=2023-12-14&api_key=${apiKey}`;
+  const url = `https://api.nasa.gov/planetary/apod?start_date=${date}&api_key=${apiKey}`;
   const apodData = await fetch(url);
   const apodInfo = await apodData.json();
 
