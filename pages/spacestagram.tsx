@@ -11,6 +11,8 @@ import ScrollTopBtn from '../components/scrollTopBtn';
 
 import { getShortDate } from '../helpers/selectors';
 
+import styles from '../styles/Spacestagram.module.css';
+
 const Spacestagram = ({ apodInfo }) => {
   const router = useRouter();
   const todaysDate = getShortDate(new Date());
@@ -27,15 +29,17 @@ const Spacestagram = ({ apodInfo }) => {
         <title>Spacestagram</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-        <h2>Brought to you by NASA's Astronomy Picture of the Day (APOD) API</h2>
-      </header>
-      <main>
-        
-      </main>
-      <footer>
-        <p>Made with ❤️ by Timothy Chan in Quebec, Canada</p>
-      </footer>
+      <div className={styles.app}>
+        <header>
+          <h2>Brought to you by NASA's Astronomy Picture of the Day (APOD) API</h2>
+        </header>
+        <main>
+          
+        </main>
+        <footer>
+          <p>Made with ❤️ by Timothy Chan in Quebec, Canada</p>
+        </footer>
+      </div>
     </>
   );
 }
