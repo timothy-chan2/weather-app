@@ -5,12 +5,12 @@
   background-color: var(--dark);
 }
 
-h2 {
+.tagline {
   color: var(--aqua);
   font-size: 1.3em;
 }
 
-button {
+.spaceButton {
   font-weight: bold;
   font-size: 1.2em;
   border-radius: 6px;
