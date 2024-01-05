@@ -3,6 +3,9 @@ import DatePicker from 'sassy-datepicker';
 
 import { getLongDate } from '../helpers/selectors';
 
+import space from '../styles/Spacestagram.module.css';
+import styles from '../styles/StartDatePicker.module.css';
+
 // The StartDatePicker component shows the button to open the calendar
 const StartDatePicker = (props) => {
   const [visible, setVisible] = useState(false);
@@ -26,24 +29,24 @@ const StartDatePicker = (props) => {
     <form>
       <button
         onClick={togglePicker}
-        className='start-date-picker-btn'
+        className={`${styles.startDatePickerBtn} ${space.spaceButton}`}
         type='button'
         aria-controls='calendar'
       >
         Pick Start Date
       </button>
       {longStartDate === currentLongDate &&
-        <p className='start-date-selected'>Picture from {longStartDate}</p>
+        <p className={styles.startDateSelected}>Picture from {longStartDate}</p>
       }
       {longStartDate !== currentLongDate &&
-        <p className='start-date-selected'>Pictures from {longStartDate} onward</p>
+        <p className={styles.startDateSelected}>Pictures from {longStartDate} onward</p>
       }
       {visible ? (
         <DatePicker
           selected={props.date}
           onChange={handleDateSelect}
           maxDate={new Date()}
-          id='calendar'
+          className={styles.calendar}
           data-testid='calendar'
         />
       ) : null}

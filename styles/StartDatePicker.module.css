@@ -1,0 +1,21 @@
+.startDatePickerBtn {
+  color: var(--green);
+  background-color: var(--dark);
+  border: 2px solid var(--green);
+}
+
+.startDatePickerBtn:hover, .startDatePickerBtn:focus {
+  color: var(--dark);
+  background-color: var(--green);
+}
+
+.startDateSelected {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.calendar {
+  color: var(--darker);
+  margin: auto auto 1em auto;
+  width: 15em;
+}
