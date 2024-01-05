@@ -7,6 +7,7 @@ import Post from '../components/post';
 import Loading from '../components/loading';
 import LoadingDots from '../components/loadingDots';
 import LoadingIconPicker from '../components/loadingIconPicker';
+import StartDatePicker from '../components/startDatePicker';
 import ScrollTopBtn from '../components/scrollTopBtn';
 
 import { getShortDate } from '../helpers/selectors';
@@ -15,11 +16,13 @@ import styles from '../styles/Spacestagram.module.css';
 
 const Spacestagram = ({ apodInfo }) => {
   const router = useRouter();
-  const todaysDate = getShortDate(new Date());
-  const [date, setDate] = useState(todaysDate);
+  const [date, setDate] = useState(new Date());
+  const [posts, setPosts] = useState([]);
   
   useEffect(() => {
-    router.replace(`/spacestagram?date=${date}`, '/spacestagram');
+    const selectedDate = getShortDate(date);
+
+    router.replace(`/spacestagram?date=${selectedDate}`, '/spacestagram');
     console.log(apodInfo);
   }, [date]);
   
@@ -31,7 +34,7 @@ const Spacestagram = ({ apodInfo }) => {
       </Head>
       <div className={styles.app}>
         <header>
-          <h2>Brought to you by NASA's Astronomy Picture of the Day (APOD) API</h2>
+          <h2 className={styles.tagline}>Brought to you by NASA's Astronomy Picture of the Day (APOD) API</h2>
         </header>
         <main>
           
@@ -51,7 +54,7 @@ export const getServerSideProps = async (context) => {
     const todaysDate = getShortDate(new Date());
     date = todaysDate;
   }
-  console.log('Date = ' + date);
+
   const apiKey = process.env.NASA_API_KEY;
   const url = `https://api.nasa.gov/planetary/apod?start_date=${date}&api_key=${apiKey}`;
   const apodData = await fetch(url);
