@@ -9,7 +9,7 @@
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sassy-datepicker": "^0.10.2"
+    "sassy-datepicker": "^0.8.0"
   },
   "engines": {
     "node": ">=18"
