@@ -18,6 +18,7 @@ const Spacestagram = ({ apodInfo }) => {
   const router = useRouter();
   const [date, setDate] = useState(new Date());
   const [posts, setPosts] = useState([]);
+  const [loadingIcon, setLoadingIcon] = useState('dots');
   
   useEffect(() => {
     const selectedDate = getShortDate(date);
