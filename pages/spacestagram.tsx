@@ -37,7 +37,11 @@ const Spacestagram = ({ apodInfo }) => {
           <h2 className={styles.tagline}>Brought to you by NASA's Astronomy Picture of the Day (APOD) API</h2>
         </header>
         <main>
-          
+        <StartDatePicker
+            date={date}
+            setDate={setDate}
+            setPosts={setPosts}
+          />
         </main>
         <footer>
           <p>Made with ❤️ by Timothy Chan in Quebec, Canada</p>
