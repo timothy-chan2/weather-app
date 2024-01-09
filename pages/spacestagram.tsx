@@ -17,14 +17,28 @@ import styles from '../styles/Spacestagram.module.css';
 const Spacestagram = ({ apodInfo }) => {
   const router = useRouter();
   const [date, setDate] = useState(new Date());
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(apodInfo);
   const [loadingIcon, setLoadingIcon] = useState('dots');
-  
+
+  const images = posts.map(post => {
+    return (
+      <Post
+        key={post.date}
+        id={post.date}
+        url={post.url}
+        title={post.title}
+        description={post.explanation}
+        media={post.media_type}
+      />
+    );
+  });
+
   useEffect(() => {
     const selectedDate = getShortDate(date);
 
     router.replace(`/spacestagram?date=${selectedDate}`, '/spacestagram');
     console.log(apodInfo);
+    setPosts(apodInfo);
   }, [date]);
   
   return (
@@ -38,11 +52,14 @@ const Spacestagram = ({ apodInfo }) => {
           <h2 className={styles.tagline}>Brought to you by NASA's Astronomy Picture of the Day (APOD) API</h2>
         </header>
         <main>
-        <StartDatePicker
-            date={date}
-            setDate={setDate}
-            setPosts={setPosts}
-          />
+          {posts.length > 0 &&
+            <StartDatePicker
+              date={date}
+              setDate={setDate}
+              setPosts={setPosts}
+            />
+          }
+          {images}
         </main>
         <footer>
           <p>Made with ❤️ by Timothy Chan in Quebec, Canada</p>
