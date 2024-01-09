@@ -38,7 +38,7 @@ const Spacestagram = ({ apodInfo }) => {
 
     router.replace(`/spacestagram?date=${selectedDate}`, '/spacestagram');
     console.log(apodInfo);
-    setPosts(apodInfo);
+    setPosts(apodInfo.reverse());
   }, [date]);
   
   return (
