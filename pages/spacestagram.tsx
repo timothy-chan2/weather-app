@@ -37,9 +37,11 @@ const Spacestagram = ({ apodInfo }) => {
     const selectedDate = getShortDate(date);
 
     router.replace(`/spacestagram?date=${selectedDate}`, '/spacestagram');
-    console.log(apodInfo);
-    setPosts(apodInfo.reverse());
   }, [date]);
+
+  useEffect(() => {
+    setPosts(apodInfo.reverse());
+  }, [apodInfo.length]);
   
   return (
     <>
