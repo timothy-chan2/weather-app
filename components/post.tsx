@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { getLongDate, getCurrentTime } from '../helpers/selectors';
 
+import space from '../styles/Spacestagram.module.css';
 import styles from '../styles/Post.module.css';
 
 // The Post component shows an image and the title, date,
@@ -56,7 +57,7 @@ const Post = (props) => {
       <button
         aria-label='Like or unlike the picture'
         onClick={() => clickLikeUnlike()}
-        className={styles.postLikeBtn}
+        className={`${styles.postLikeBtn} ${space.spaceButton}`}
         type='button'
         aria-controls={`${props.id}-like`}
       >
