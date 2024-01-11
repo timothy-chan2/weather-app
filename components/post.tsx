@@ -6,7 +6,7 @@ import styles from '../styles/Post.module.css';
 // The Post component shows an image and the title, date,
 // description, and like or unlike button related to it
 const Post = (props) => {
-  let likeStatus = localStorage.getItem(`like-status-${props.id}`);
+  let likeStatus = typeof window !== 'undefined' ? localStorage.getItem(`like-status-${props.id}`) : null;
   const [buttonText, setButtonText] = useState(likeStatus || 'Like');
 
   const longDate = useMemo(
