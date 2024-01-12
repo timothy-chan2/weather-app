@@ -54,6 +54,18 @@ const Spacestagram = ({ apodInfo }) => {
           <h2 className={styles.tagline}>Brought to you by NASA's Astronomy Picture of the Day (APOD) API</h2>
         </header>
         <main>
+          {posts.length === 0 &&
+            loadingIcon === 'dots' && <LoadingDots />
+          }
+          {posts.length === 0 &&
+            loadingIcon === 'wheel' && <Loading />
+          }
+          {posts.length > 0 &&
+            <LoadingIconPicker
+              loadingIcon={loadingIcon}
+              setLoadingIcon={setLoadingIcon}
+            />
+          }
           {posts.length > 0 &&
             <StartDatePicker
               date={date}
