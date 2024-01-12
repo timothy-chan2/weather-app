@@ -28,7 +28,7 @@ const Post = (props) => {
   };
   
   return (
-    <article className='post'>
+    <article className={styles.post}>
       {props.media === 'image' &&
         <img
           src={props.url}
@@ -53,7 +53,7 @@ const Post = (props) => {
         {props.title} - {longDate}
         {likeStatus === 'Unlike' && <span id={`${props.id}-like`}> ❤️</span>}
       </h3>
-      <p id={props.id} className='postDesc'>{props.description}</p>
+      <p id={props.id} className={styles.postDesc}>{props.description}</p>
       <button
         aria-label='Like or unlike the picture'
         onClick={() => clickLikeUnlike()}
