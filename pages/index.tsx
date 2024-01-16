@@ -5,6 +5,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import Navbar from '../components/navbar';
+
 import styles from '../styles/Home.module.css';
 
 type WeatherSummary = {
@@ -74,14 +76,9 @@ export default function Home({ weatherSummary, city, region }) {
       </Head>
 
       <main className={styles.container}>
-        <header className={styles.navbar}>
-          <h1>WeatherApp</h1>
-          <nav className={styles.nav}>
-            <ul className={styles.menu}>
-              <li><Link href="/spacestagram">Spacestagram</Link></li>
-            </ul>
-          </nav>
-        </header>
+        <Navbar
+          title='WeatherApp'
+        />
         <section>
           <h2 className={styles.city}>
             { city }, { region }
