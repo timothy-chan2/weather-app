@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import space from '../styles/Spacestagram.module.css';
 import styles from '../styles/LoadingIconPicker.module.css';
 
 const LoadingIconPicker = (props) => {
@@ -18,7 +19,7 @@ const LoadingIconPicker = (props) => {
       <button
         aria-label='Switch to a different loading icon'
         onClick={toggleLoadingIconDropdown}
-        className={styles.loadingDropdownBtn}
+        className={`${styles.loadingDropdownBtn} ${space.spaceButton}`}
         type='button'
         aria-controls='loading-choices'
       >
@@ -29,8 +30,11 @@ const LoadingIconPicker = (props) => {
           <button
             aria-label='Switch to the dots loading icon'
             onClick={() => handleDropdownSelect('dots')}
-            className={loadingIcon === 'dots' ?
-              styles.loadingOptionBtnSelected : styles.loadingOptionBtn}
+            className={loadingIcon === 'dots' ? (
+                `${styles.loadingOptionBtnSelected} ${space.spaceButton}`
+              ) : (
+                `${styles.loadingOptionBtn} ${space.spaceButton}`
+              )} 
             type='button'
           >
             Dots
@@ -38,8 +42,11 @@ const LoadingIconPicker = (props) => {
           <button
             aria-label='Switch to the wheel loading icon'
             onClick={() => handleDropdownSelect('wheel')}
-            className={loadingIcon === 'wheel' ?
-              styles.loadingOptionBtnSelected : styles.loadingOptionBtn}
+            className={loadingIcon === 'wheel' ? (
+                `${styles.loadingOptionBtnSelected} ${space.spaceButton}`
+              ) : (
+                `${styles.loadingOptionBtn} ${space.spaceButton}`
+              )}
             type='button'
           >
             Wheel
