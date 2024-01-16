@@ -74,6 +74,7 @@ const Spacestagram = ({ apodInfo }) => {
             />
           }
           {images}
+          <ScrollTopBtn />
         </main>
         <footer>
           <p>Made with ❤️ by Timothy Chan in Quebec, Canada</p>
