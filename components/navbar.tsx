@@ -3,8 +3,14 @@ import Link from 'next/link';
 import styles from '../styles/Navbar.module.css';
 
 const Navbar = (props) => {
+  let navStyles;
+  
+  if (props.fontColor === 'dark purple') {
+    navStyles = `${styles.navbar} ${styles.darkPurple}`;
+  }
+  
   return (
-    <header className={styles.navbar}>
+    <header className={navStyles}>
       <h1>{props.title}</h1>
       <nav className={styles.nav}>
         <ul className={styles.menu}>

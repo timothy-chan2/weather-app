@@ -5,8 +5,11 @@
   display: flex;
   padding-left: 20px;
   width: 100%;
-  background: #fff;
-  color: rgb(217 13 217);
+  background: rgba(255,255,255,0.9);
+}
+
+.darkPurple {
+  color: #9A099A;
 }
 
 .nav {
