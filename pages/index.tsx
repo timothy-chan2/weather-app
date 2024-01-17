@@ -77,7 +77,7 @@ export default function Home({ weatherSummary, city, region }) {
 
       <main className={styles.container}>
         <Navbar
-          title='WeatherApp'
+          pageTitle='WeatherApp'
           fontColor='dark purple'
         />
         <section>

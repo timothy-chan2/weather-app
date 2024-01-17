@@ -11,10 +11,15 @@ const Navbar = (props) => {
   
   return (
     <header className={navStyles}>
-      <h1>{props.title}</h1>
+      <h1>{props.pageTitle}</h1>
       <nav className={styles.nav}>
         <ul className={styles.menu}>
-          <li><Link href="/spacestagram">Spacestagram</Link></li>
+          {props.pageTitle !== 'WeatherApp' &&
+            <li><Link href="/">WeatherApp</Link></li>
+          }
+          {props.pageTitle !== 'Spacestagram' &&
+            <li><Link href="/spacestagram">Spacestagram</Link></li>
+          }
         </ul>
       </nav>
     </header>
