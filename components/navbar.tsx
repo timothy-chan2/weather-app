@@ -6,8 +6,13 @@ import LoadingDots from '../components/loadingDots';
 
 import styles from '../styles/Navbar.module.css';
 
-const Navbar = (props) => {
-  let navStyles;
+type Props = {
+  pageTitle: string,
+  fontColor: string
+};
+
+const Navbar = (props: Props) => {
+  let navStyles: string;
   const [isLoading, setIsLoading] = useState(false);
   
   if (props.fontColor === 'dark purple') {
