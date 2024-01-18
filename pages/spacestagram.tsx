@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
+import Navbar from '../components/navbar';
 import Post from '../components/post';
 import Loading from '../components/loading';
 import LoadingDots from '../components/loadingDots';
@@ -51,6 +52,10 @@ const Spacestagram = ({ apodInfo }) => {
       </Head>
       <div className={styles.app}>
         <header>
+          <Navbar
+            pageTitle='Spacestagram'
+            fontColor='light purple'
+          />
           <h2 className={styles.tagline}>Brought to you by NASA's Astronomy Picture of the Day (APOD) API</h2>
         </header>
         <main>
