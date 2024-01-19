@@ -25,7 +25,7 @@ const Navbar = (props: Props) => {
 
   return (
     <header className={navStyles}>
-      <h1>{props.pageTitle}</h1>
+      <h1 className={styles.pageTitle}>{props.pageTitle}</h1>
       <nav className={styles.nav}>
         <ul className={styles.menu}>
           {props.pageTitle !== 'WeatherApp' &&
