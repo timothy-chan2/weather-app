@@ -17,6 +17,8 @@ const Navbar = (props: Props) => {
   
   if (props.fontColor === 'dark purple') {
     navStyles = `${styles.navbar} ${styles.darkPurple}`;
+  } else if (props.fontColor === 'dark purple rel') {
+    navStyles = `${styles.navbar} ${styles.navbarRel} ${styles.darkPurple}`;
   }
   
   const showLoading = () => {
