@@ -54,7 +54,7 @@ const Spacestagram = ({ apodInfo }) => {
         <header>
           <Navbar
             pageTitle='Spacestagram'
-            fontColor='light purple'
+            fontColor='dark purple'
           />
           <h2 className={styles.tagline}>Brought to you by NASA's Astronomy Picture of the Day (APOD) API</h2>
         </header>

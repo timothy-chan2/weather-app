@@ -12,10 +12,6 @@
   color: #9A099A;
 }
 
-.lightPurple {
-  color: var(--purple);
-}
-
 .nav {
   display: flex;
   align-items: center;
