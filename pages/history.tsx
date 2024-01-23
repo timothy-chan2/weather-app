@@ -4,6 +4,8 @@ import '../types/types';
 import Head from 'next/head';
 import Link from 'next/link';
 
+import Navbar from '../components/navbar';
+
 import styles from '../styles/History.module.css';
 
 const History = () => {
@@ -26,6 +28,10 @@ const History = () => {
       </Head>
       
       <main className={styles.container}>
+        <Navbar
+          pageTitle='WeatherApp'
+          fontColor='dark purple'
+        />
         <h1>My Weather History</h1>
         {weatherHistory !== null ? (
           weatherHistory.map((weather, index) => {
