@@ -1,4 +1,7 @@
 import { useState, useMemo } from 'react';
+
+import Image from 'next/image';
+
 import { getLongDate, getCurrentTime } from '../helpers/selectors';
 
 import space from '../styles/Spacestagram.module.css';
@@ -30,11 +33,15 @@ const Post = (props) => {
   return (
     <article className={styles.post}>
       {props.media === 'image' &&
-        <img
+        <Image
           src={props.url}
+          alt={props.title}
           aria-labelledby={props.id}
           className={styles.postImg}
           data-testid='image'
+          sizes='(max-width: 992px) 90vw, (min-width: 992px) 70vw'
+          width='350'
+          height='360'
         />
       }
       {props.media === 'video' &&
