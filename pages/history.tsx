@@ -32,13 +32,13 @@ const History = () => {
           pageTitle='WeatherApp'
           fontColor='dark purple'
         />
-        <h2>My Weather History</h2>
+        <h2 className={styles.subtitle}>My Weather History</h2>
         {weatherHistory !== null ? (
           weatherHistory.map((weather, index) => {
             return (
               <section key={index} className={styles.log}>
-                <h2 className={styles.location}>{weather.city}, {weather.region}</h2>
-                <h3 className={styles.date}>{weather.date}</h3>
+                <h3 className={styles.location}>{weather.city}, {weather.region}</h3>
+                <h4 className={styles.date}>{weather.date}</h4>
                 <p>{weather.time}</p>
                 <p>Temperature: {weather.temp}<sup>°C</sup></p>
                 <p className={styles.desc}>Condition: {weather.description}</p>

@@ -9,6 +9,11 @@
   align-items: center;
 }
 
+.subtitle {
+  font-size: 1.8em;
+  margin-top: 5em;
+}
+
 .log {
   border: 1px solid;
   padding: 5px 50px;
@@ -18,10 +23,12 @@
 
 .location {
   margin-bottom: 5px;
+  font-size: 1.5em;
 }
 
 .date {
   margin-top: 5px;
+  font-size: 1.25em;
 }
 
 .desc {
@@ -35,6 +42,7 @@
   border-radius: 6px;
   cursor: pointer;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .history {
