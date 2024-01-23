@@ -32,7 +32,7 @@ const History = () => {
           pageTitle='WeatherApp'
           fontColor='dark purple'
         />
-        <h1>My Weather History</h1>
+        <h2>My Weather History</h2>
         {weatherHistory !== null ? (
           weatherHistory.map((weather, index) => {
             return (
