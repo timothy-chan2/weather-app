@@ -25,8 +25,23 @@ const Navbar = (props: Props) => {
     setIsLoading(true);
   };
 
+  /*To make the menu disappear when scrolling down*/
+  let lastScrollTop = 0;
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener('scroll', () => {  
+      let st = window.scrollY || document.documentElement.scrollTop;  
+      if (st > lastScrollTop){
+        document.getElementById('nav-bar').style.top = '-100%';
+      } else {
+        document.getElementById('nav-bar').style.top = '0';
+      }
+      lastScrollTop = st;
+    });
+  }
+
   return (
-    <header className={navStyles}>
+    <header id='nav-bar' className={navStyles}>
       <h1 className={styles.pageTitle}>{props.pageTitle}</h1>
       <nav className={styles.nav}>
         <ul className={styles.menu}>
