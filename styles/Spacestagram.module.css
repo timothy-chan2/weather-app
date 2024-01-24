@@ -9,6 +9,7 @@
 .tagline {
   color: var(--aqua);
   font-size: 1.3em;
+  margin-top: 6em;
 }
 
 .spaceButton {
