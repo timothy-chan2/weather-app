@@ -31,14 +31,18 @@ const Navbar = (props: Props) => {
       <nav className={styles.nav}>
         <ul className={styles.menu}>
           {props.pageTitle !== 'WeatherApp' &&
-            <li><Link href="/" onClick={showLoading}>
-              WeatherApp
-            </Link></li>
+            <li className={styles.menuItem}>
+              <Link href="/" onClick={showLoading}>
+                WeatherApp
+              </Link>
+            </li>
           }
           {props.pageTitle !== 'Spacestagram' &&
-            <li><Link href="/spacestagram" onClick={showLoading}>
-              Spacestagram
-            </Link></li>
+            <li className={styles.menuItem}>
+              <Link href="/spacestagram" onClick={showLoading}>
+                Spacestagram
+              </Link>
+            </li>
           }
           {isLoading && <LoadingDots />}
         </ul>
