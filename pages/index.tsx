@@ -80,6 +80,18 @@ export default function Home({ weatherSummary, city, region }) {
           pageTitle='WeatherApp'
           fontColor='dark purple'
         />
+        <Image
+          src='https://images.unsplash.com/photo-1585508889431-a1d0d9c5a324'
+          alt='Background image: Mist in the forest'
+          className={styles.backgroundImg}
+          fill
+        />
+        <Image
+          src='https://images.unsplash.com/photo-1561484930-998b6a7b22e8'
+          alt='Background image: A mountain behind a calm lake'
+          className={styles.backgroundImg2}
+          fill
+        />
         <section>
           <h2 className={styles.city}>
             { city }, { region }
