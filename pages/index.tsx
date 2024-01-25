@@ -92,31 +92,33 @@ export default function Home({ weatherSummary, city, region }) {
           className={styles.backgroundImg2}
           fill
         />
-        <section>
-          <h2 className={styles.city}>
-            { city }, { region }
-          </h2>
-          <p className={styles.date}>{ month + " " + day + ", " + year }</p>
-        </section>
-        <section className={styles.conditions}>
-          <section className={styles.tempContainer}>
-            <h3 className={styles.temp}>
-              { roundedTemp }<sup className={styles.celcius}>°C</sup>
-            </h3>
-            <p className={styles.desc}>{ weatherSummary.description }</p>
+        <section className={styles.textContainer}>
+          <section>
+            <h2 className={styles.city}>
+              { city }, { region }
+            </h2>
+            <p className={styles.date}>{ month + " " + day + ", " + year }</p>
           </section>
-          <Image
-            src={`http://openweathermap.org/img/wn/${weatherSummary.icon}@4x.png`}
-            alt={`${ weatherSummary.description } icon`}
-            width="150"
-            height="150"
-          />
-        </section>
-        <section className={styles.btnContainer}>
-          <button onClick={saveWeather} className={`${styles.save} ${styles.btn}`}>Save Info</button>
-          <Link href="/history">
-            <button className={`${styles.history} ${styles.btn}`}>My History</button>
-          </Link>
+          <section className={styles.conditions}>
+            <section className={styles.tempContainer}>
+              <h3 className={styles.temp}>
+                { roundedTemp }<sup className={styles.celcius}>°C</sup>
+              </h3>
+              <p className={styles.desc}>{ weatherSummary.description }</p>
+            </section>
+            <Image
+              src={`http://openweathermap.org/img/wn/${weatherSummary.icon}@4x.png`}
+              alt={`${ weatherSummary.description } icon`}
+              width="150"
+              height="150"
+            />
+          </section>
+          <section className={styles.btnContainer}>
+            <button onClick={saveWeather} className={`${styles.save} ${styles.btn}`}>Save Info</button>
+            <Link href="/history">
+              <button className={`${styles.history} ${styles.btn}`}>My History</button>
+            </Link>
+          </section>
         </section>
       </main>
     </>

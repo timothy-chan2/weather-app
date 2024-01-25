@@ -3,13 +3,21 @@
   min-height: 100vh;
   padding: 0 0.5rem;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .backgroundImg, .backgroundImg2 {
   z-index: -1;
+}
+
+.textContainer {
+  background: rgba(0,0,0,0.25);
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
 }
 
 .city {
@@ -44,6 +52,12 @@
 
   .backgroundImg2 {
     display: block;
+  }
+}
+
+@media ((min-width: 600px) and (max-width: 1000px)) {
+  .backgroundImg2 {
+    height: 125vh !important;
   }
 }
 
