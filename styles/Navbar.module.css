@@ -5,12 +5,12 @@
   display: flex;
   padding-left: 20px;
   width: 100%;
-  background: rgba(255,255,255,0.9);
+  background: var(--nav-bg);
   transition: 1s;
 }
 
 .darkPurple {
-  color: #9A099A;
+  color: var(--darker-purple);
 }
 
 .nav {
@@ -24,7 +24,7 @@
 }
 
 .menuItem:is(:hover, :focus, :active) {
-  color: #bb0bbb;
+  color: var(--dark-purple);
 }
 
 .menuItem a {
