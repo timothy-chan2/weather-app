@@ -38,12 +38,12 @@
 
   .pageTitle {
     margin-block-start: 0.3em;
-    margin-block-end: 0.3em;
+    margin-block-end: 0.1em;
   }
 
   .menu {
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
   }
 }
 
