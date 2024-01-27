@@ -1,6 +1,6 @@
 .container {
-  background: rgb(149, 27, 149);
-  color: #fff;
+  background: var(--darker-purple);
+  color: var(--light);
   min-height: 100vh;
   padding: 0 0.5rem;
   display: flex;
@@ -46,9 +46,9 @@
 }
 
 .history {
-  background: yellow;
+  background: var(--yellow);
 }
 
 .history:is(:hover, :focus, :active) {
-  background: rgb(216, 216, 3);
+  background: var(--yellow-hover);
 }

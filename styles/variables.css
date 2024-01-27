@@ -7,10 +7,13 @@
   --darker-purple: #9A099A;
   --light-blue: #A7C6FE;
   --yellow: #ffc107;
+  --yellow-hover: #e7af07;
   --aqua: #5bc0de;
   --green: #80E096;
+  --green-hover: #70c583;
   --pink: #E68989;
   --red: #FF0000;
   --shadow: rgba(34, 25, 25, 0.4);
   --nav-bg: rgba(255,255,255,0.9);
+  --faded: rgba(0,0,0,0.25);
 }
