@@ -85,12 +85,14 @@ export default function Home({ weatherSummary, city, region }) {
           alt='Background image: Mist in the forest'
           className={styles.backgroundImg}
           fill
+          sizes='(max-width: 600px) 100vw'
         />
         <Image
           src='https://images.unsplash.com/photo-1561484930-998b6a7b22e8'
           alt='Background image: A mountain behind a calm lake'
           className={styles.backgroundImg2}
           fill
+          sizes='(min-width: 600px) 100vw, (min-width: 850px) 100vw'
         />
         <section className={styles.textContainer}>
           <section>
