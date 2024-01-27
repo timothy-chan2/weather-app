@@ -109,8 +109,9 @@ export default function Home({ weatherSummary, city, region }) {
             <Image
               src={`http://openweathermap.org/img/wn/${weatherSummary.icon}@4x.png`}
               alt={`${ weatherSummary.description } icon`}
-              width="150"
-              height="150"
+              className={styles.descImg}
+              width='150'
+              height='150'
             />
           </section>
           <section className={styles.btnContainer}>
