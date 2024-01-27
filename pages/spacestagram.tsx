@@ -60,7 +60,7 @@ const Spacestagram = ({ apodInfo }) => {
         <main>
           <h2 className={styles.tagline}>Brought to you by NASA's Astronomy Picture of the Day (APOD) API</h2>
           {posts.length === 0 &&
-            loadingIcon === 'dots' && <LoadingDots />
+            loadingIcon === 'dots' && <LoadingDots dotColor='light blue' />
           }
           {posts.length === 0 &&
             loadingIcon === 'wheel' && <Loading />

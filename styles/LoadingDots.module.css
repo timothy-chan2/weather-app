@@ -13,8 +13,15 @@
 
 .loaderDot {
   border-radius: 50%;
-  border: 5px solid var(--light-blue);
   margin: 10px;
+}
+
+.purpleDot {
+  border: 5px solid var(--darker-purple);
+}
+
+.blueDot {
+  border: 5px solid var(--light-blue);
 }
 
 @keyframes twincle {

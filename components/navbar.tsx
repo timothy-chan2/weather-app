@@ -57,7 +57,7 @@ const Navbar = (props: Props) => {
               </Link>
             </li>
           }
-          {isLoading && <LoadingDots />}
+          {isLoading && <LoadingDots dotColor='purple' />}
         </ul>
       </nav>
     </header>
