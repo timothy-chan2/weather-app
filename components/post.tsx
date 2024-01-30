@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 import Image from 'next/image';
 
@@ -10,7 +10,7 @@ import styles from '../styles/Post.module.css';
 // The Post component shows an image and the title, date,
 // description, and like or unlike button related to it
 const Post = (props) => {
-  let likeStatus = typeof window !== 'undefined' ? localStorage.getItem(`like-status-${props.id}`) : null;
+  const [likeStatus, setLikeStatus] = useState(null);
   const [buttonText, setButtonText] = useState(likeStatus || 'Like');
 
   const longDate = useMemo(
@@ -18,14 +18,18 @@ const Post = (props) => {
     [props.id]
   );
 
+  useEffect(() => {
+    setLikeStatus(localStorage.getItem(`like-status-${props.id}`));
+  }, []);
+
   const clickLikeUnlike = () => {
     buttonText === 'Like' ? setButtonText('Unlike') : setButtonText('Like');
 
     if (likeStatus === null || likeStatus === 'Like') {
-      likeStatus = 'Unlike';
+      setLikeStatus('Unlike');
       localStorage.setItem(`like-status-${props.id}`, 'Unlike');
     } else if (likeStatus === 'Unlike') {
-      likeStatus = 'Like';
+      setLikeStatus('Like');
       localStorage.setItem(`like-status-${props.id}`, 'Like');
     }
   };
