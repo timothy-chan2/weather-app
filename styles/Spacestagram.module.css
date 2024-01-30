@@ -19,3 +19,9 @@
   padding: 0.5em 1.3em;
   cursor: pointer;
 }
+
+@media (max-height: 500px) {
+  .tagline {
+    margin-top: 3em;
+  }
+}
