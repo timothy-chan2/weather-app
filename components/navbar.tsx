@@ -57,8 +57,15 @@ const Navbar = (props: Props) => {
               </Link>
             </li>
           }
-          {isLoading && <LoadingDots dotColor='purple' />}
+          {props.pageTitle !== 'Developer' &&
+            <li className={styles.menuItem}>
+              <Link href="/developer" onClick={showLoading}>
+                Developer
+              </Link>
+            </li>
+          }
         </ul>
+        {isLoading && <LoadingDots dotColor='purple' />}
       </nav>
     </header>
   );
