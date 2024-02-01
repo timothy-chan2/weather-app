@@ -1,14 +1,28 @@
 import projects from '../helpers/projectData';
 
 import Head from 'next/head';
+import Image from 'next/image';
 
 import Navbar from '../components/navbar';
+import Project from '../components/project';
 
 import styles from '../styles/Developer.module.css';
 
 // The Developer component shows other projects I have done
 // with links to my GitHub page if it is not deloyed
 const Developer = () => {
+  const projectCards = projects.map(project => {
+    return (
+      <Project
+        key={project.title}
+        title={project.title}
+        imgUrl={project.imgUrl}
+        linkUrl={project.linkUrl}
+        description={project.desc}
+      />
+    );
+  });
+  
   return (
     <>
       <Head>
@@ -16,13 +30,17 @@ const Developer = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.developer}>
-        <img
+        <Image
           className={styles.bgImage}
-          src='images/trunk-ring.jpg'
+          src='/images/trunk-ring.jpg'
           alt=''
+          width='360'
+          height='740'
+          sizes='(max-width: 850px) 100vw, (min-width: 850px) 85vw'
+          priority={true}
         />
       
-        <div className={styles.developerContent}>
+        <div id='developer-content' className={styles.developerContent}>
           <header>
             <Navbar
               pageTitle='Developer'
@@ -30,16 +48,19 @@ const Developer = () => {
             />
             <h2 className={styles.developerName}>Timothy Chan</h2>
             <a href='https://linkedin.com/in/timothychan2' target='_blank' rel='noreferrer'>
-              <img
-                src='images/In-White-34.png'
+              <Image
+                src='/images/In-White-34.png'
+                alt='LinkedIn logo'
                 aria-label='LinkedIn logo'
+                width='44'
+                height='34'
               />
             </a>
           </header>
           <main>
 
             <p className={styles.otherProjects}>My other projects:</p>
-
+            {projectCards}
           </main>
         </div>
       </div>

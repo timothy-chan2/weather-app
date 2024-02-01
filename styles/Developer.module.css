@@ -10,8 +10,7 @@
 .bgImage {
   opacity: 0.3;
   height: 100vh;
-  width: 1500px;
-  margin-top: 7em;
+  width: auto;
 }
 
 .developerContent {
@@ -26,6 +25,7 @@
 .developerName {
   font-size: 1.75em;
   margin-top: 5em;
+  color: var(--aqua);
 }
 
 .otherProjects {
@@ -33,14 +33,8 @@
   font-size: 1.5em;
 }
 
-@media (min-width: 600px) {
-  .bgImage {
-    margin-top: 6em;
-  }
-}
-
 @media (max-height: 500px) {
-  .bgImage, .developerName {
+  .developerName {
     margin-top: 3em;
   }
 }
