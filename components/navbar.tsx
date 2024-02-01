@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Link from 'next/link';
 
@@ -37,6 +37,22 @@ const Navbar = (props: Props) => {
       lastScrollTop = st;
     });
   }
+
+  useEffect(() => {
+    const developerContentQuery = document.querySelector('#developer-content');
+  
+    if (developerContentQuery) {
+      developerContentQuery.addEventListener('scroll', () => {  
+        let st = developerContentQuery.scrollTop;  
+        if (st > lastScrollTop){
+          document.getElementById('nav-bar').style.top = '-100%';
+        } else {
+          document.getElementById('nav-bar').style.top = '0';
+        }
+        lastScrollTop = st;
+      });
+    }
+  }, []);
 
   return (
     <header id='nav-bar' className={navStyles}>
