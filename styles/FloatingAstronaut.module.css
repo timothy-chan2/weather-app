@@ -1,0 +1,305 @@
+.bkgd {
+  display: flex;
+  justify-content: center;
+}
+
+.window {
+  position: relative;
+  height: 17em;
+  width: 17em;
+  border-radius: 50%;
+  background-color: rgb(0, 68, 102);
+  transform: scale(0.8);
+}
+
+@keyframes floating{
+  50%{
+    transform: translate(10px, 20px);
+  }
+}
+
+.astronaut {
+  animation-name: floating;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  position: relative;
+  bottom: 160px;
+  left: 15px;
+  height: 0;
+}
+
+.person {
+  position: relative;
+  left: 56px;
+  bottom: 55px;
+  transform: rotate(-20deg);
+  width: 174px;
+}
+
+.tank {
+  background-color: #a6a6a6;
+  height: 180px;
+  width: 100px;
+  border-radius: 45px 45px 15px 15px;
+  position: relative;
+  left: 60px;
+  top: 120px;
+  transform: rotate(-20deg);
+}
+
+.helmet {
+  background-color: white;
+  height: 70px;
+  width: 75px;
+  border-radius: 46%;
+  position: relative;
+  left: 51px;
+  z-index: 1;
+}
+
+.glass {
+  background-color: #666666;
+  height: 60px;
+  width: 70px;
+  border-radius: 60% 60% 55% 55%;
+  position: relative;
+  left: 2.5px;
+  top: 2px;
+}
+
+.reflection {
+  background-color: rgba(166, 166, 166,0.7);
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  position: relative;
+  left: 15px;
+  top: 15px;
+}
+
+.suit {
+  background-color: #f2f2f2;
+  height: 90px;
+  width:  90px;
+  border-radius: 10%;
+  position: relative;
+  bottom: 5px;
+  left: 44px;
+}
+
+.armr {
+  height: 22px;
+  width: 60px;
+  background-color: #f2f2f2;
+  border-radius: 40px;
+  position: relative;
+  bottom: 124px;
+  left: 115px;
+  transform: rotate(-20deg);
+}
+
+.arml {
+  height: 22px;
+  width: 60px;
+  background-color: #f2f2f2;
+  border-radius: 40px;
+  position: relative;
+  bottom: 103px;
+  right: 2px;
+  transform: rotate(20deg);
+}
+
+.forearmr {
+  height: 22px;
+  width: 50px;
+  background-color: #f2f2f2;
+  border-radius: 26px;
+  position: relative;
+  bottom: 19px;
+  left: 25px;
+  transform: rotate(90deg);
+}
+
+.forearml {
+  height: 22px;
+  width: 50px;
+  background-color: #f2f2f2;
+  border-radius: 26px;
+  position: relative;
+  bottom: 19px;
+  right: 14px;
+  transform: rotate(-90deg);
+}
+
+.glover {
+  height: 24px;
+  width: 22px;
+  background-color: white;
+  border-top-left-radius: 50%; 
+  border-top-right-radius: 50%;
+  transform: rotate(-90deg);
+  position: relative;
+  bottom: 1px;
+  right: 14px;
+}
+
+.glovel {
+  height: 24px;
+  width: 22px;
+  background-color: white;
+  border-top-left-radius: 50%; 
+  border-top-right-radius: 50%;
+  transform: rotate(90deg);
+  position: relative;
+  bottom: 1px;
+  left: 42px;
+}
+
+.thumbr {
+  height: 9px;
+  width: 9px;
+  border-radius: 50%;
+  background-color: white;
+  position: relative;
+  right: 6px;
+  top: 15px;
+}
+
+.thumbl {
+  height: 9px;
+  width: 9px;
+  border-radius: 50%;
+  background-color: white;
+  position: relative;
+  left: 19px;
+  top: 15px;
+}
+
+.wrist1, .wrist2 {
+  background-color: tomato;
+  width: 24px;
+  height: 5px;
+  border-radius: 13px;
+  position: relative;
+  top: 16px;
+  right: 1px;
+}
+
+.panel {
+  background-color: white;
+  width: 60px;
+  height: 40px;
+  border-radius: 10px;
+  position: relative;
+  top: 20px;
+  left: 16px;
+}
+
+.btn1 {
+  height: 12px;
+  width: 12px;
+  border-radius: 25%;
+  background-color: #ffd147;
+  position: relative;
+  left: 5px;
+  top: 20px;
+}
+
+.btn2 {
+  height: 12px;
+  width: 12px;
+  border-radius: 25%;
+  background-color: #4775ff;
+  position: relative;
+  left: 21px;
+  top: 8px;
+}
+
+.knob {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background-color: #a6a6a6;
+  position: relative;
+  bottom: 14px;
+  left: 38px;
+}
+
+.legl {
+  height: 80px;
+  width: 34px;
+  background-color: #f2f2f2;
+  position: relative;
+  bottom: 60px;
+  left: 38px;
+  transform: rotate(12deg);
+}
+
+.legr {
+  height: 80px;
+  width: 34px;
+  background-color: #f2f2f2;
+  position: relative;
+  bottom: 138px;
+  left: 106px;
+  transform: rotate(-12deg);
+}
+
+.bootl, .bootr {
+  background-color: white;
+  width: 37px;
+  height: 25px;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  position: relative;
+  top: 50px;
+  right: 1.5px;
+}
+
+.stripel, .striper {
+  background-color: tomato;
+  width: 37px;
+  height: 5px;
+  border-radius: 13px;
+  position: relative;
+  top: 32px;
+  right: 1.5px;
+}
+
+.s1, .s2, .s3, .s4, .s5, .s6 {
+  background-color: white;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.s1 {
+  top: 20px;
+  left: 110px;
+}
+
+.s2 {
+  top: 130px;
+  left: 200px;
+}
+
+.s3 {
+  top: 98px;
+  left: 15px;
+}
+
+.s4 {
+  top: 230px;
+  left: 145px;
+}
+
+.s5 {
+  top: 160px;
+  left: 45px;
+}
+
+.s6 {
+  top: 15px;
+  left: 230px;
+}
