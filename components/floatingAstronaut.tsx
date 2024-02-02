@@ -2,7 +2,7 @@ import styles from '../styles/FloatingAstronaut.module.css';
 
 const FloatingAstronaut = () => {
   return (
-		<div className={styles.bkgd}>
+		<article className={styles.bkgd}>
 			<div className={styles.window}>
 				<div className={styles.stars}>
 					<div className={styles.s1} />
@@ -54,7 +54,7 @@ const FloatingAstronaut = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</article>
   );
 };
 

@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 import Navbar from '../components/navbar';
 import Project from '../components/project';
+import FloatingAstronaut from '../components/floatingAstronaut';
 
 import styles from '../styles/Developer.module.css';
 
@@ -19,6 +20,7 @@ const Developer = () => {
         imgUrl={project.imgUrl}
         linkUrl={project.linkUrl}
         description={project.desc}
+        priority={project.priority}
       />
     );
   });
@@ -58,7 +60,7 @@ const Developer = () => {
             </a>
           </header>
           <main>
-
+            <FloatingAstronaut />
             <p className={styles.otherProjects}>My other projects:</p>
             {projectCards}
           </main>
