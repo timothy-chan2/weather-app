@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import styles from '../styles/Post.module.css';
 import projectStyles from '../styles/Project.module.css';
 
@@ -8,12 +10,28 @@ const Project = (props) => {
     <article className={styles.post}>
       {props.linkUrl &&
         <a href={props.linkUrl} target='_blank' rel='noreferrer'>
-          <img
-            src={props.imgUrl}
-            aria-label={props.title}
-            className={styles.postImg}
-            loading='lazy'
-          />
+          {props.priority ? (
+            <Image
+              src={`/${props.imgUrl}`}
+              alt={props.title}
+              aria-label={props.title}
+              className={styles.postImg}
+              sizes='(max-width: 992px) 90vw, (min-width: 992px) 70vw'
+              width='350'
+              height='360'
+              priority
+            />
+          ) : (
+            <Image
+              src={`/${props.imgUrl}`}
+              alt={props.title}
+              aria-label={props.title}
+              className={styles.postImg}
+              sizes='(max-width: 992px) 90vw, (min-width: 992px) 70vw'
+              width='350'
+              height='360'
+            />
+          )}
         </a>
       }
       {props.videoUrl &&

@@ -114,6 +114,7 @@ export default function Home({ weatherSummary, city, region }) {
               className={styles.descImg}
               width='150'
               height='150'
+              priority
             />
           </section>
           <section className={styles.btnContainer}>
