@@ -46,6 +46,12 @@ const Project = (props) => {
         </iframe>
       }
       <h3 className={styles.postTitle}>{props.title}</h3>
+      {props.fStack &&
+        <p className={`${styles.postDesc}`}><strong>Front-end:</strong> {props.fStack}</p>
+      }
+      {props.bStack &&
+        <p className={`${styles.postDesc}`}><strong>Back-end:</strong> {props.bStack}</p>
+      }
       <p className={`${styles.postDesc} ${projectStyles.projectDesc}`}>{props.description}</p>
     </article>
   );

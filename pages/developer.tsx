@@ -21,6 +21,8 @@ const Developer = () => {
         linkUrl={project.linkUrl}
         description={project.desc}
         priority={project.priority}
+        fStack={project.fStack}
+        bStack={project.bStack}
       />
     );
   });
