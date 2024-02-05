@@ -28,6 +28,7 @@
 .postDesc {
   padding: 0 1em;
   text-align: left;
+  color: var(--light);
 }
 
 @media screen and (min-width: 992px) {
