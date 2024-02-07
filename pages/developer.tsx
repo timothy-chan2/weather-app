@@ -10,7 +10,7 @@ import FloatingAstronaut from '../components/floatingAstronaut';
 import styles from '../styles/Developer.module.css';
 
 // The Developer component shows other projects I have done
-// with links to my GitHub page if it is not deloyed
+// with the link to my GitHub page if it is not deployed
 const Developer = () => {
   const projectCards = projects.map(project => {
     return (
