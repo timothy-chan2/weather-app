@@ -12,7 +12,9 @@ const projects = [
     title: 'Trash Panda MTL',
     imgUrl: 'images/trash-panda.gif',
     linkUrl: 'https://github.com/andres039/Upcycle-Cradle-Montreal',
-    desc: 'A web app that allows Montrealers to extend the life of discarded furniture by displaying their location on an interactive map.',
+    desc: 'A web app developed as part of a team that allows Montrealers to extend the life of discarded furniture by displaying their location on an interactive map. It encourages sustainability by reducing the amount of useful items going to the landfill. My responsibility: Main developer working on the front end.',
+    fStack: 'React JS, JavaScript, SCSS, Leaflet, React-Leaflet, Axios',
+    bStack: 'Node JS, Express JS, JWT, bcryptjs, PostgresSQL',
   },
   {
     title: 'TinyApp',
