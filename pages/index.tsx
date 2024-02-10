@@ -1,9 +1,12 @@
 import type { GetServerSideProps } from 'next';
 import '../types/types';
 
+import { useEffect } from 'react';
+
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import Navbar from '../components/navbar';
 
@@ -17,11 +20,12 @@ type WeatherSummary = {
 
 type Props = {
   weatherSummary: WeatherSummary,
-  city: string,
-  region: string
+  city: string | string[],
+  region: string | string[]
 };
 
 export default function Home({ weatherSummary, city, region }) {
+  const router = useRouter();
   // Get the current date
   const date = new Date();
   const milliseconds = Date.parse(date.toString());
@@ -33,6 +37,19 @@ export default function Home({ weatherSummary, city, region }) {
   // Calculate the temperature rounded to the nearest integer
   const roundedTemp = Math.round(weatherSummary.temp);
   
+  useEffect(() => {
+    const getUserWeatherData = async () => {
+      const ipRequest = await fetch(`http://ip-api.com/json/`);
+      const ipData = await ipRequest.json();
+      const city = ipData.city;
+      const region = ipData.regionName;
+
+      router.replace(`/?city=${city}&region=${region}`, '/');
+    };
+    
+    getUserWeatherData();
+  }, []);
+
   const saveWeather = () => {
     const weatherData: WeatherData = {
       fullDate: milliseconds,
@@ -130,10 +147,12 @@ export default function Home({ weatherSummary, city, region }) {
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
-  const ipRequest = await fetch(`http://ip-api.com/json/`);
-  const ipData = await ipRequest.json();
-  const city = ipData.city;
-  const region = ipData.regionName;
+  let { city, region } = context.query;
+
+  if (city === undefined) {
+    city='Montreal';
+    region='Quebec';
+  }
 
   const apiKey = process.env.WEATHER_API_KEY;
   const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},&appid=${apiKey}&units=metric`;
