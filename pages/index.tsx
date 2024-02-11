@@ -113,9 +113,11 @@ export default function Home({ weatherSummary, city, region }) {
         />
         <section className={styles.textContainer}>
           <section>
-            <h2 className={styles.city}>
-              { city }, { region }
-            </h2>
+            {city === '...' ? (
+              <h2 className={styles.city}>{ city }</h2>
+            ) : (
+              <h2 className={styles.city}>{ city }, { region }</h2>
+            )}
             <p className={styles.date}>{ month + " " + day + ", " + year }</p>
           </section>
           <section className={styles.conditions}>
@@ -126,7 +128,11 @@ export default function Home({ weatherSummary, city, region }) {
               <p className={styles.desc}>{ weatherSummary.description }</p>
             </section>
             <Image
-              src={`http://openweathermap.org/img/wn/${weatherSummary.icon}@4x.png`}
+              src={weatherSummary.icon === '' ? (
+                '/images/loading.png'
+              ) : (
+                `http://openweathermap.org/img/wn/${weatherSummary.icon}@4x.png`
+              )}
               alt={`${ weatherSummary.description } icon`}
               className={styles.descImg}
               width='150'
@@ -149,21 +155,29 @@ export default function Home({ weatherSummary, city, region }) {
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
   let { city, region } = context.query;
 
+  let weatherSummary: WeatherSummary;
+
   if (city === undefined) {
-    city='Montreal';
-    region='Quebec';
+    city='...';
+    region='';
+
+    weatherSummary = {
+      temp: 0,
+      description: 'Loading...',
+      icon: ''
+    };
+  } else {
+    const apiKey = process.env.WEATHER_API_KEY;
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},&appid=${apiKey}&units=metric`;
+    const weatherRequest = await fetch(url);
+    const weatherInfo = await weatherRequest.json();
+
+    weatherSummary = {
+      temp: weatherInfo.main.temp,
+      description: weatherInfo.weather[0].description,
+      icon: weatherInfo.weather[0].icon
+    };
   }
-
-  const apiKey = process.env.WEATHER_API_KEY;
-  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},&appid=${apiKey}&units=metric`;
-  const weatherRequest = await fetch(url);
-  const weatherInfo = await weatherRequest.json();
-
-  const weatherSummary: WeatherSummary = {
-    temp: weatherInfo.main.temp,
-    description: weatherInfo.weather[0].description,
-    icon: weatherInfo.weather[0].icon
-  };
 
   const props: Props = {
     weatherSummary,
