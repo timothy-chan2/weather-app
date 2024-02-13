@@ -22,10 +22,12 @@ type WeatherSummary = {
 type Props = {
   weatherSummary: WeatherSummary,
   city: string,
-  region: string
+  region: string,
+  lat: number,
+  lon: number
 };
 
-export default function Home({ weatherSummary, city, region }) {
+export default function Home({ weatherSummary, city, region, lat, lon }) {
   const router = useRouter();
   // Get the current date
   const date = new Date();
@@ -154,12 +156,14 @@ export default function Home({ weatherSummary, city, region }) {
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
   const { ip } = context.query;
 
-  let city: string, region: string;
+  let city: string, region: string, lat: number, lon: number;
   let weatherSummary: WeatherSummary;
 
   if (ip === undefined) {
     city='...';
     region='';
+    lat=0;
+    lon=0;
 
     weatherSummary = {
       temp: 0,
@@ -171,8 +175,11 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
     const ipData = await ipRequest.json();
     city = ipData.city;
     region = ipData.regionName;
+    lat = ipData.lat;
+    lon = ipData.lon;
+
     const apiKey = process.env.WEATHER_API_KEY;
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},&appid=${apiKey}&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
     const weatherRequest = await fetch(url);
     const weatherInfo = await weatherRequest.json();
 
@@ -186,7 +193,9 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
   const props: Props = {
     weatherSummary,
     city,
-    region
+    region,
+    lat,
+    lon
   };
 
   return {
