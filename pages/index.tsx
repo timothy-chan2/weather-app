@@ -20,8 +20,8 @@ type WeatherSummary = {
 
 type Props = {
   weatherSummary: WeatherSummary,
-  city: string | string[],
-  region: string | string[]
+  city: string,
+  region: string
 };
 
 export default function Home({ weatherSummary, city, region }) {
@@ -39,12 +39,10 @@ export default function Home({ weatherSummary, city, region }) {
   
   useEffect(() => {
     const getUserWeatherData = async () => {
-      const ipRequest = await fetch(`http://ip-api.com/json/`);
-      const ipData = await ipRequest.json();
-      const city = ipData.city;
-      const region = ipData.regionName;
+      const ipifyResponse = await fetch('https://api.ipify.org/?format=json');
+      const userIp = await ipifyResponse.json();
 
-      router.replace(`/?city=${city}&region=${region}`, '/');
+      router.replace(`/?ip=${userIp.ip}`, '/');
     };
     
     getUserWeatherData();
@@ -153,11 +151,12 @@ export default function Home({ weatherSummary, city, region }) {
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
-  let { city, region } = context.query;
+  const { ip } = context.query;
 
+  let city: string, region: string;
   let weatherSummary: WeatherSummary;
 
-  if (city === undefined) {
+  if (ip === undefined) {
     city='...';
     region='';
 
@@ -167,6 +166,10 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
       icon: ''
     };
   } else {
+    const ipRequest = await fetch(`http://ip-api.com/json/${ip}`);
+    const ipData = await ipRequest.json();
+    city = ipData.city;
+    region = ipData.regionName;
     const apiKey = process.env.WEATHER_API_KEY;
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},&appid=${apiKey}&units=metric`;
     const weatherRequest = await fetch(url);
