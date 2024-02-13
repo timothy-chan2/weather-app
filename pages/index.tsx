@@ -130,7 +130,7 @@ export default function Home({ weatherSummary, city, region }) {
               <LoadingDots dotColor='light blue' />
             ) : (
               <Image
-                src={`http://openweathermap.org/img/wn/${weatherSummary.icon}@4x.png`}
+                src={`https://openweathermap.org/img/wn/${weatherSummary.icon}@4x.png`}
                 alt={`${ weatherSummary.description } icon`}
                 className={styles.descImg}
                 width='150'
@@ -172,7 +172,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
     city = ipData.city;
     region = ipData.regionName;
     const apiKey = process.env.WEATHER_API_KEY;
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},&appid=${apiKey}&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},&appid=${apiKey}&units=metric`;
     const weatherRequest = await fetch(url);
     const weatherInfo = await weatherRequest.json();
 

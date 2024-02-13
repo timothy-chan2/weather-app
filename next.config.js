@@ -2,7 +2,7 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
+        protocol: 'https',
         hostname: 'openweathermap.org',
         port: '',
         pathname: '/img/**',
