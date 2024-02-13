@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import Navbar from '../components/navbar';
+import LoadingDots from '../components/loadingDots';
 
 import styles from '../styles/Home.module.css';
 
@@ -125,18 +126,18 @@ export default function Home({ weatherSummary, city, region }) {
               </h3>
               <p className={styles.desc}>{ weatherSummary.description }</p>
             </section>
-            <Image
-              src={weatherSummary.icon === '' ? (
-                '/images/loading.png'
-              ) : (
-                `http://openweathermap.org/img/wn/${weatherSummary.icon}@4x.png`
-              )}
-              alt={`${ weatherSummary.description } icon`}
-              className={styles.descImg}
-              width='150'
-              height='150'
-              priority
-            />
+            {weatherSummary.icon === '' ? (
+              <LoadingDots dotColor='light blue' />
+            ) : (
+              <Image
+                src={`http://openweathermap.org/img/wn/${weatherSummary.icon}@4x.png`}
+                alt={`${ weatherSummary.description } icon`}
+                className={styles.descImg}
+                width='150'
+                height='150'
+                priority
+              />
+            )}
           </section>
           <section className={styles.btnContainer}>
             <button onClick={saveWeather} className={`${styles.save} ${styles.btn}`}>Save Info</button>
