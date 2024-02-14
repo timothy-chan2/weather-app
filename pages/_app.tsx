@@ -1,12 +1,16 @@
 import type { AppProps } from 'next/app';
 
+import { LocationProvider } from '../context/location';
+
 import '../styles/variables.css';
 import '../styles/global.css';
 
-// The following lines of code is used to override the default App component
+// Override the default App component
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <Component {...pageProps} />
+    <LocationProvider>
+      <Component {...pageProps} />
+    </LocationProvider>
   );
 }
 

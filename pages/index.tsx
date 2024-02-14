@@ -2,6 +2,7 @@ import type { GetServerSideProps } from 'next';
 import '../types/types';
 
 import { useEffect } from 'react';
+import { useLocationContext } from '../context/location';
 
 import Head from 'next/head';
 import Link from 'next/link';
@@ -29,6 +30,13 @@ type Props = {
 
 export default function Home({ weatherSummary, city, region, lat, lon }) {
   const router = useRouter();
+  const {
+    userCity, setUserCity,
+    userRegion, setUSerRegion,
+    userLat, setUserLat,
+    userLon, setUserLon
+  } = useLocationContext();
+
   // Get the current date
   const date = new Date();
   const milliseconds = Date.parse(date.toString());
@@ -40,15 +48,15 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
   // Calculate the temperature rounded to the nearest integer
   const roundedTemp = Math.round(weatherSummary.temp);
   
-  useEffect(() => {
-    const getUserWeatherData = async () => {
-      const ipifyResponse = await fetch('https://api.ipify.org/?format=json');
-      const userIp = await ipifyResponse.json();
+  const getUserWeatherDataWithIp = async () => {
+    const ipifyResponse = await fetch('https://api.ipify.org/?format=json');
+    const userIp = await ipifyResponse.json();
 
-      router.replace(`/?ip=${userIp.ip}`, '/');
-    };
-    
-    getUserWeatherData();
+    router.replace(`/?ip=${userIp.ip}`, '/');
+  };
+
+  useEffect(() => {
+    getUserWeatherDataWithIp();
   }, []);
 
   const saveWeather = () => {
