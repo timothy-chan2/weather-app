@@ -97,7 +97,7 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
   return (
     <>
       <Head>
-        <title>Weather App</title>
+        <title>WeatherApp</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
