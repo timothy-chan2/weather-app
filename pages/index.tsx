@@ -37,6 +37,15 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
     userLon, setUserLon
   } = useLocationContext();
 
+  useEffect(() => {
+    if (region) {
+      setUserCity(city);
+      setUSerRegion(region);
+      setUserLat(lat);
+      setUserLon(lon);
+    }
+  }, [region]);
+
   // Get the current date
   const date = new Date();
   const milliseconds = Date.parse(date.toString());
@@ -48,6 +57,10 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
   // Calculate the temperature rounded to the nearest integer
   const roundedTemp = Math.round(weatherSummary.temp);
   
+  const getUserWeatherDataWithCoord = () => {
+    router.replace(`/?ip=y&coordLat=${userLat}&coordLon=${userLon}`, '/');
+  };
+
   const getUserWeatherDataWithIp = async () => {
     const ipifyResponse = await fetch('https://api.ipify.org/?format=json');
     const userIp = await ipifyResponse.json();
@@ -56,7 +69,11 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
   };
 
   useEffect(() => {
-    getUserWeatherDataWithIp();
+    if (userLat) {
+      getUserWeatherDataWithCoord();
+    } else {
+      getUserWeatherDataWithIp();
+    }
   }, []);
 
   const saveWeather = () => {
@@ -64,8 +81,8 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
       fullDate: milliseconds,
       date: `${ month + " " + day + ", " + year }`,
       time: time,
-      city: city,
-      region: region,
+      city: userCity,
+      region: userRegion,
       temp: roundedTemp,
       description: weatherSummary.description
     };
@@ -122,10 +139,10 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
         />
         <section className={styles.textContainer}>
           <section>
-            {city === '...' ? (
-              <h2 className={styles.city}>{ city }</h2>
+            {userCity ? (
+              <h2 className={styles.city}>{ userCity }, { userRegion }</h2>
             ) : (
-              <h2 className={styles.city}>{ city }, { region }</h2>
+              <h2 className={styles.city}>...</h2>
             )}
             <p className={styles.date}>{ month + " " + day + ", " + year }</p>
           </section>
@@ -162,13 +179,13 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
-  const { ip } = context.query;
+  const { ip, coordLat, coordLon } = context.query;
 
   let city: string, region: string, lat: number, lon: number;
   let weatherSummary: WeatherSummary;
 
   if (ip === undefined) {
-    city='...';
+    city='';
     region='';
     lat=0;
     lon=0;
@@ -179,12 +196,19 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
       icon: ''
     };
   } else {
-    const ipRequest = await fetch(`http://ip-api.com/json/${ip}`);
-    const ipData = await ipRequest.json();
-    city = ipData.city;
-    region = ipData.regionName;
-    lat = ipData.lat;
-    lon = ipData.lon;
+    if (coordLat) {
+      city = '';
+      region = '';
+      lat = +coordLat;
+      lon = +coordLon;
+    } else {
+      const ipRequest = await fetch(`http://ip-api.com/json/${ip}`);
+      const ipData = await ipRequest.json();
+      city = ipData.city;
+      region = ipData.regionName;
+      lat = ipData.lat;
+      lon = ipData.lon;
+    }
 
     const apiKey = process.env.WEATHER_API_KEY;
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
