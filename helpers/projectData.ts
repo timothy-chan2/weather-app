@@ -3,7 +3,7 @@ const projects = [
     title: 'Spacestagram',
     imgUrl: 'images/spacestagram.png',
     linkUrl: 'https://spac3stagram.onrender.com',
-    desc: 'Deployed a web app to view photos from NASA’s Astronomy Picture of the Day image API with mobile first responsive design. The website can be used to increase people’s interest in science/technology. Users can select the date range as well as like and unlike any of the photos.',
+    desc: 'Deployed a web app to view photos from NASA’s Astronomy Picture of the Day image API with mobile first responsive design. The website can be used to increase people’s interest in science/technology. Users can select the date range as well as like and unlike any of the photos. I wrote tests using Jest.',
     fStack: 'React JS, JavaScript, HTML, CSS, sassy-datepicker, Axios',
     bStack: 'Node JS, Express JS, Axios, dotenv',
     priority: true
