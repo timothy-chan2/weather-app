@@ -10,6 +10,7 @@ import LoadingDots from '../components/loadingDots';
 import LoadingIconPicker from '../components/loadingIconPicker';
 import StartDatePicker from '../components/startDatePicker';
 import ScrollTopBtn from '../components/scrollTopBtn';
+import ApiErrorMessage from '../components/apiErrorMessage';
 
 import { getShortDate } from '../helpers/selectors';
 
@@ -20,9 +21,9 @@ const Spacestagram = ({ apodInfo }) => {
   const [date, setDate] = useState(new Date());
   const [posts, setPosts] = useState(apodInfo);
   const [loadingIcon, setLoadingIcon] = useState('dots');
-  let images;
+  let images: JSX.Element[];
 
-  if (typeof(apodInfo) === 'object') {
+  if (Array.isArray(posts)) {
     images = posts.map(post => {
       return (
         <Post
@@ -44,7 +45,7 @@ const Spacestagram = ({ apodInfo }) => {
   }, [date]);
 
   useEffect(() => {
-    if (typeof(apodInfo) === 'object') {
+    if (Array.isArray(apodInfo)) {
       setPosts(apodInfo.reverse());
     }
   }, [apodInfo.length]);
@@ -65,7 +66,7 @@ const Spacestagram = ({ apodInfo }) => {
         <main>
           <h2 className={styles.tagline}>Brought to you by NASA's Astronomy Picture of the Day (APOD) API</h2>
           {apodInfo === 'error' &&
-            <p>That's embarrassing. There seems to be a problem with the data received from the NASA API.</p>
+            <ApiErrorMessage apiName='NASA' />
           }
           {posts.length === 0 &&
             loadingIcon === 'dots' && <LoadingDots dotColor='light blue' />
@@ -73,13 +74,13 @@ const Spacestagram = ({ apodInfo }) => {
           {posts.length === 0 &&
             loadingIcon === 'wheel' && <Loading />
           }
-          {typeof(apodInfo) === 'object' && posts.length > 0 &&
+          {Array.isArray(apodInfo) && posts.length > 0 &&
             <LoadingIconPicker
               loadingIcon={loadingIcon}
               setLoadingIcon={setLoadingIcon}
             />
           }
-          {typeof(apodInfo) === 'object' && posts.length > 0 &&
+          {Array.isArray(apodInfo) && posts.length > 0 &&
             <StartDatePicker
               date={date}
               setDate={setDate}
@@ -107,11 +108,11 @@ export const getServerSideProps = async (context) => {
 
   const apiKey = process.env.NASA_API_KEY;
   const url = `https://api.nasa.gov/planetary/apod?start_date=${date}&api_key=${apiKey}`;
-  const apodData = await fetch(url);
   let apodInfo;
   try {
+    const apodData = await fetch(url);
     apodInfo = await apodData.json();
-  } catch (e) {
+  } catch {
     apodInfo = 'error';
   }
 
