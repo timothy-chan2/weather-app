@@ -1,7 +1,7 @@
 import type { GetServerSideProps } from 'next';
 import '../types/types';
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocationContext } from '../context/location';
 
 import Head from 'next/head';
@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 
 import Navbar from '../components/navbar';
 import LoadingDots from '../components/loadingDots';
+import ApiErrorMessage from '../components/apiErrorMessage';
 
 import styles from '../styles/Home.module.css';
 
@@ -45,6 +46,10 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
       setUserLon(lon);
     }
   }, [region]);
+  
+  const getUserWeatherDataWithCoord = () => {
+    router.replace(`/?ip=yes&coordLat=${userLat}&coordLon=${userLon}`, '/');
+  };
 
   // Get the current date
   const date = new Date();
@@ -54,19 +59,28 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
   const year = date.getFullYear();
   const time = date.toLocaleTimeString();
 
-  // Calculate the temperature rounded to the nearest integer
-  const roundedTemp = Math.round(weatherSummary.temp);
-  
-  const getUserWeatherDataWithCoord = () => {
-    router.replace(`/?ip=y&coordLat=${userLat}&coordLon=${userLon}`, '/');
-  };
+  const [hasApiError, setHasApiError] = useState(false);
 
   const getUserWeatherDataWithIp = async () => {
-    const ipifyResponse = await fetch('https://api.ipify.org/?format=json');
-    const userIp = await ipifyResponse.json();
-
-    router.replace(`/?ip=${userIp.ip}`, '/');
+    try {
+      const ipifyResponse = await fetch('https://api.ipify.org/?format=json');
+      const userIp = await ipifyResponse.json();
+      router.replace(`/?ip=${userIp.ip}`, '/');
+    } catch {
+      setHasApiError(true);
+      console.log('API error 1');
+    }
   };
+
+  useEffect(() => {
+    if (city === 'error2') {
+      setHasApiError(true);
+      console.log('API error 2');
+    } else if (city === 'error3') {
+      setHasApiError(true);
+      console.log('API error 3');
+    }
+  }, [city]);
 
   useEffect(() => {
     if (userLat) {
@@ -76,40 +90,48 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
     }
   }, []);
 
-  const saveWeather = () => {
-    const weatherData: WeatherData = {
-      fullDate: milliseconds,
-      date: `${ month + " " + day + ", " + year }`,
-      time: time,
-      city: userCity,
-      region: userRegion,
-      temp: roundedTemp,
-      description: weatherSummary.description
-    };
+  let saveWeather;
+  let roundedTemp;
 
-    const previousDataString = localStorage.getItem("weatherHistory");
-    let previousData = JSON.parse(previousDataString);
-    let isDuplicate = false;
+  if (hasApiError === false) {
+    // Calculate the temperature rounded to the nearest integer
+    roundedTemp = Math.round(weatherSummary.temp);
 
-    if (previousData === null) {
-      previousData = [];
-    }
+    saveWeather = () => {
+      const weatherData: WeatherData = {
+        fullDate: milliseconds,
+        date: `${ month + " " + day + ", " + year }`,
+        time: time,
+        city: userCity,
+        region: userRegion,
+        temp: roundedTemp,
+        description: weatherSummary.description
+      };
 
-    if (previousData.length > 0) {
-      const lastWeatherData = previousData[previousData.length - 1];
-      
-      if (lastWeatherData.fullDate === milliseconds) {
-        isDuplicate = true;
-        alert("Weather data is already saved.");
+      const previousDataString = localStorage.getItem("weatherHistory");
+      let previousData = JSON.parse(previousDataString);
+      let isDuplicate = false;
+
+      if (previousData === null) {
+        previousData = [];
       }
-    }
-    
-    if (isDuplicate === false) {
-      previousData.push(weatherData);
-      localStorage.setItem("weatherHistory", JSON.stringify(previousData));
-      alert("Weather saved successfully!");
-    }
-  };
+
+      if (previousData.length > 0) {
+        const lastWeatherData = previousData[previousData.length - 1];
+        
+        if (lastWeatherData.fullDate === milliseconds) {
+          isDuplicate = true;
+          alert("Weather data is already saved.");
+        }
+      }
+      
+      if (isDuplicate === false) {
+        previousData.push(weatherData);
+        localStorage.setItem("weatherHistory", JSON.stringify(previousData));
+        alert("Weather saved successfully!");
+      }
+    };
+  }
 
   return (
     <>
@@ -138,41 +160,49 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
           sizes='(min-width: 600px) 100vw, (min-width: 850px) 100vw'
         />
         <section className={styles.textContainer}>
-          <section>
-            {userCity ? (
-              <h2 className={styles.city}>{ userCity }, { userRegion }</h2>
-            ) : (
-              <h2 className={styles.city}>...</h2>
-            )}
-            <p className={styles.date}>{ month + " " + day + ", " + year }</p>
-          </section>
-          <section className={styles.conditions}>
-            <section className={styles.tempContainer}>
-              <h3 className={styles.temp}>
-                { roundedTemp }<sup className={styles.celcius}>°C</sup>
-              </h3>
-              <p className={styles.desc}>{ weatherSummary.description }</p>
-            </section>
-            {weatherSummary.icon === '' ? (
-              <LoadingDots dotColor='light blue' />
-            ) : (
-              <Image
-                src={`https://openweathermap.org/img/wn/${weatherSummary.icon}@4x.png`}
-                alt={`${ weatherSummary.description } icon`}
-                className={styles.descImg}
-                width='150'
-                height='150'
-                priority
-              />
-            )}
-          </section>
-          <section className={styles.btnContainer}>
-            <button onClick={saveWeather} className={`${styles.save} ${styles.btn}`}>Save Info</button>
-            <Link href="/history">
-              <button className={`${styles.history} ${styles.btn}`}>My History</button>
-            </Link>
-          </section>
+          {hasApiError &&
+            <ApiErrorMessage apiName='weather' />
+          }
+          {hasApiError === false &&
+            <>
+              <section>
+                {userCity ? (
+                  <h2 className={styles.city}>{ userCity }, { userRegion }</h2>
+                ) : (
+                  <h2 className={styles.city}>...</h2>
+                )}
+                <p className={styles.date}>{ month + " " + day + ", " + year }</p>
+              </section>
+              <section className={styles.conditions}>
+                <section className={styles.tempContainer}>
+                  <h3 className={styles.temp}>
+                    { roundedTemp }<sup className={styles.celcius}>°C</sup>
+                  </h3>
+                  <p className={styles.desc}>{ weatherSummary.description }</p>
+                </section>
+                {weatherSummary.icon === '' ? (
+                  <LoadingDots dotColor='light blue' />
+                ) : (
+                  <Image
+                    src={`https://openweathermap.org/img/wn/${weatherSummary.icon}@4x.png`}
+                    alt={`${ weatherSummary.description } icon`}
+                    className={styles.descImg}
+                    width='150'
+                    height='150'
+                    priority
+                  />
+                )}
+              </section>
+              <section className={styles.btnContainer}>
+                <button onClick={saveWeather} className={`${styles.save} ${styles.btn}`}>Save Info</button>
+                <Link href="/history">
+                  <button className={`${styles.history} ${styles.btn}`}>My History</button>
+                </Link>
+              </section>
+            </>
+          }
         </section>
+        
       </main>
     </>
   );
@@ -181,45 +211,49 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
   const { ip, coordLat, coordLon } = context.query;
 
-  let city: string, region: string, lat: number, lon: number;
-  let weatherSummary: WeatherSummary;
+  const placeholderWeatherData = {
+    temp: 0,
+    description: 'Loading...',
+    icon: ''
+  };
 
-  if (ip === undefined) {
-    city='';
-    region='';
-    lat=0;
-    lon=0;
+  let city = '', region = '', lat = 0, lon = 0;
+  let weatherSummary = placeholderWeatherData;
 
-    weatherSummary = {
-      temp: 0,
-      description: 'Loading...',
-      icon: ''
-    };
-  } else {
+  if (ip) {
     if (coordLat) {
-      city = '';
-      region = '';
       lat = +coordLat;
       lon = +coordLon;
     } else {
-      const ipRequest = await fetch(`http://ip-api.com/json/${ip}`);
-      const ipData = await ipRequest.json();
-      city = ipData.city;
-      region = ipData.regionName;
-      lat = ipData.lat;
-      lon = ipData.lon;
+      try {
+        const ipRequest = await fetch(`http://ip-api.com/json/${ip}`);
+        const ipData = await ipRequest.json();
+        city = ipData.city;
+        region = ipData.regionName;
+        lat = ipData.lat;
+        lon = ipData.lon;
+      } catch {
+        city = 'error2';
+      }
     }
 
-    const apiKey = process.env.WEATHER_API_KEY;
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-    const weatherRequest = await fetch(url);
-    const weatherInfo = await weatherRequest.json();
-
-    weatherSummary = {
-      temp: weatherInfo.main.temp,
-      description: weatherInfo.weather[0].description,
-      icon: weatherInfo.weather[0].icon
-    };
+    if (city !== 'error2') {
+      const apiKey = process.env.WEATHER_API_KEY;
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+     
+      try {
+        const weatherRequest = await fetch(url);
+        const weatherInfo = await weatherRequest.json();
+  
+        weatherSummary = {
+          temp: weatherInfo.main.temp,
+          description: weatherInfo.weather[0].description,
+          icon: weatherInfo.weather[0].icon
+        };
+      } catch {
+        city = 'error3';
+      }
+    }
   }
 
   const props: Props = {
