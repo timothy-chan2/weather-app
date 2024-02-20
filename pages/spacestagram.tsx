@@ -69,23 +69,27 @@ const Spacestagram = ({ apodInfo }) => {
             <ApiErrorMessage apiName='NASA' />
           }
           {posts.length === 0 &&
-            loadingIcon === 'dots' && <LoadingDots dotColor='light blue' />
-          }
-          {posts.length === 0 &&
-            loadingIcon === 'wheel' && <Loading />
-          }
-          {Array.isArray(apodInfo) && posts.length > 0 &&
-            <LoadingIconPicker
-              loadingIcon={loadingIcon}
-              setLoadingIcon={setLoadingIcon}
-            />
+            <>
+              {loadingIcon === 'dots' &&
+                <LoadingDots dotColor='light blue' />
+              }
+              {loadingIcon === 'wheel' &&
+                <Loading />
+              }
+            </>
           }
           {Array.isArray(apodInfo) && posts.length > 0 &&
-            <StartDatePicker
-              date={date}
-              setDate={setDate}
-              setPosts={setPosts}
-            />
+            <>
+              <LoadingIconPicker
+                loadingIcon={loadingIcon}
+                setLoadingIcon={setLoadingIcon}
+              />
+              <StartDatePicker
+                date={date}
+                setDate={setDate}
+                setPosts={setPosts}
+              />
+            </>
           }
           {images}
           <ScrollTopBtn />
