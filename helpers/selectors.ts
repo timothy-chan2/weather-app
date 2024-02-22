@@ -1,7 +1,8 @@
-const getLongDate = (defaultDate) => {
-  const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
-  'August', 'September', 'October', 'November', 'December'][defaultDate.getMonth()];
-  const longDate = `${month} ${defaultDate.getDate()}, ${defaultDate.getFullYear()}`;
+const getLongDate = (dateObject: Date) => {
+  const day = dateObject.getDate();
+  const monthName = dateObject.toLocaleString('default', { month: 'long' });
+  const year = dateObject.getFullYear();
+  const longDate = `${monthName} ${day}, ${year}`;
 
   return longDate;
 };
