@@ -7,22 +7,28 @@ const getLongDate = (dateObject: Date) => {
   return longDate;
 };
 
-const getShortDate = (dateObject) => {
-  const padTo2Digits = (num) => {
+const getShortDate = (dateObject: Date) => {
+  const padTo2Digits = (num: number) => {
     return num.toString().padStart(2, '0');
   };
 
-  return [
-    dateObject.getFullYear(),
-    padTo2Digits(dateObject.getMonth() + 1),
-    padTo2Digits(dateObject.getDate()),
-  ].join('-');
+  const year = dateObject.getFullYear();
+  const monthNumber = padTo2Digits(dateObject.getMonth() + 1);
+  const day = padTo2Digits(dateObject.getDate());
+  const shortDate = `${year}-${monthNumber}-${day}`;
+
+  return shortDate;
 };
 
-const getCurrentTime = () => {
+const getCurrentTime = (typeOfTime: string) => {
   const currentDate = new Date();
-  const currentTime = currentDate.getHours() + ':' + currentDate.getMinutes()
-  + ':' + currentDate.getSeconds();
+  let currentTime: string | number;
+
+  if (typeOfTime === 'human') {
+    currentTime = currentDate.toLocaleTimeString();
+  } else if (typeOfTime === 'milliseconds') {
+    currentTime = Date.parse(currentDate.toString());
+  }
 
   return currentTime;
 };
