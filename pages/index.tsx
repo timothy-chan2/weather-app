@@ -13,6 +13,8 @@ import Navbar from '../components/navbar';
 import LoadingDots from '../components/loadingDots';
 import ApiErrorMessage from '../components/apiErrorMessage';
 
+import { getLongDate, getCurrentTime, getCurrentDateInMilliseconds } from '../helpers/selectors';
+
 import styles from '../styles/Home.module.css';
 
 type WeatherSummary = {
@@ -52,12 +54,9 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
   };
 
   // Get the current date
-  const date = new Date();
-  const milliseconds = Date.parse(date.toString());
-  const day = date.getDate();
-  const month = date.toLocaleString("default", { month: "long" });
-  const year = date.getFullYear();
-  const time = date.toLocaleTimeString();
+  const currentLongDate = getLongDate();
+  const currentTime = getCurrentTime();
+  const currentDateInMilliseconds = getCurrentDateInMilliseconds();
 
   const [hasApiError, setHasApiError] = useState(false);
 
@@ -99,9 +98,9 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
 
     saveWeather = () => {
       const weatherData: WeatherData = {
-        fullDate: milliseconds,
-        date: `${ month + " " + day + ", " + year }`,
-        time: time,
+        fullDate: currentDateInMilliseconds,
+        date: currentLongDate,
+        time: currentTime,
         city: userCity,
         region: userRegion,
         temp: roundedTemp,
@@ -119,7 +118,7 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
       if (previousData.length > 0) {
         const lastWeatherData = previousData[previousData.length - 1];
         
-        if (lastWeatherData.fullDate === milliseconds) {
+        if (lastWeatherData.fullDate === currentDateInMilliseconds) {
           isDuplicate = true;
           alert("Weather data is already saved.");
         }
@@ -171,7 +170,7 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
                 ) : (
                   <h2 className={styles.city}>...</h2>
                 )}
-                <p className={styles.date}>{ month + " " + day + ", " + year }</p>
+                <p className={styles.date}>{ currentLongDate }</p>
               </section>
               <section className={styles.conditions}>
                 <section className={styles.tempContainer}>
