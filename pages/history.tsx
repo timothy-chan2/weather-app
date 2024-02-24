@@ -16,7 +16,7 @@ const History = () => {
     let previousHistory = JSON.parse(previousHistoryString);
 
     if (previousHistory !== undefined) {
-      setWeatherHistory(previousHistory);
+      setWeatherHistory(previousHistory.reverse());
     }
   }, []);
 
