@@ -1,4 +1,4 @@
-const getLongDate = (dateObject: Date) => {
+const getLongDate = (dateObject = new Date()) => {
   const day = dateObject.getDate();
   const monthName = dateObject.toLocaleString('default', { month: 'long' });
   const year = dateObject.getFullYear();
@@ -20,17 +20,18 @@ const getShortDate = (dateObject: Date) => {
   return shortDate;
 };
 
-const getCurrentTime = (typeOfTime: string) => {
+const getCurrentTime = () => {
   const currentDate = new Date();
-  let currentTime: string | number;
-
-  if (typeOfTime === 'human') {
-    currentTime = currentDate.toLocaleTimeString();
-  } else if (typeOfTime === 'milliseconds') {
-    currentTime = Date.parse(currentDate.toString());
-  }
-
+  let currentTime = currentDate.toLocaleTimeString();
+ 
   return currentTime;
 };
 
-export { getLongDate, getShortDate, getCurrentTime };
+const getCurrentDateInMilliseconds = () => {
+  const currentDate = new Date();
+  const currentDateInMilliseconds = Date.parse(currentDate.toString());
+
+  return currentDateInMilliseconds;
+};
+
+export { getLongDate, getShortDate, getCurrentTime, getCurrentDateInMilliseconds };

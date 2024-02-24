@@ -14,7 +14,7 @@ const Post = (props) => {
   const [buttonText, setButtonText] = useState(likeStatus || 'Like');
 
   const longDate = useMemo(
-    () => getLongDate(new Date(`${props.id} ${getCurrentTime('human')}`)),
+    () => getLongDate(new Date(`${props.id} ${getCurrentTime()}`)),
     [props.id]
   );
 
