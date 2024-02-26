@@ -15,7 +15,7 @@ const StartDatePicker = (props) => {
     [props.date]
   );
   
-  const currentLongDate = getLongDate(new Date());
+  const currentLongDate = getLongDate();
 
   const handleDateSelect = (newDate) => {
     props.setDate(newDate);

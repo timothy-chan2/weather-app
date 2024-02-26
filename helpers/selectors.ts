@@ -22,7 +22,7 @@ const getShortDate = (dateObject: Date) => {
 
 const getCurrentTime = () => {
   const currentDate = new Date();
-  let currentTime = currentDate.toLocaleTimeString();
+  const currentTime = currentDate.toLocaleTimeString();
  
   return currentTime;
 };
