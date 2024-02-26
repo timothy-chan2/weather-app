@@ -13,7 +13,7 @@ import Navbar from '../components/navbar';
 import LoadingDots from '../components/loadingDots';
 import ApiErrorMessage from '../components/apiErrorMessage';
 
-import { getLongDate, getCurrentTime, getCurrentDateInMilliseconds } from '../helpers/selectors';
+import { getLongDate, getCurrentTime, getCurrentDateInMilliseconds, getUserWeatherDataWithIp } from '../helpers/selectors';
 
 import styles from '../styles/Home.module.css';
 
@@ -60,17 +60,6 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
 
   const [hasApiError, setHasApiError] = useState(false);
 
-  const getUserWeatherDataWithIp = async () => {
-    try {
-      const ipifyResponse = await fetch('https://api.ipify.org/?format=json');
-      const userIp = await ipifyResponse.json();
-      router.replace(`/?ip=${userIp.ip}`, '/');
-    } catch {
-      setHasApiError(true);
-      console.log('API error 1');
-    }
-  };
-
   useEffect(() => {
     if (city === 'error2') {
       setHasApiError(true);
@@ -85,7 +74,7 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
     if (userLat) {
       getUserWeatherDataWithCoord();
     } else {
-      getUserWeatherDataWithIp();
+      getUserWeatherDataWithIp(router, setHasApiError);
     }
   }, []);
 

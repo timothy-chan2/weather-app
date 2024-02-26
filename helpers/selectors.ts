@@ -1,3 +1,6 @@
+import { NextRouter } from 'next/router';
+import { Dispatch, SetStateAction } from 'react';
+
 const getLongDate = (dateObject = new Date()) => {
   const day = dateObject.getDate();
   const monthName = dateObject.toLocaleString('default', { month: 'long' });
@@ -34,4 +37,15 @@ const getCurrentDateInMilliseconds = () => {
   return currentDateInMilliseconds;
 };
 
-export { getLongDate, getShortDate, getCurrentTime, getCurrentDateInMilliseconds };
+const getUserWeatherDataWithIp = async (router: NextRouter, setHasApiError: Dispatch<SetStateAction<boolean>>) => {
+  try {
+    const ipifyResponse = await fetch('https://api.ipify.org/?format=json');
+    const userIp = await ipifyResponse.json();
+    router.replace(`/?ip=${userIp.ip}`, '/');
+  } catch {
+    setHasApiError(true);
+    console.log('API error 1');
+  }
+};
+
+export { getLongDate, getShortDate, getCurrentTime, getCurrentDateInMilliseconds, getUserWeatherDataWithIp };
