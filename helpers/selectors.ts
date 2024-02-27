@@ -48,4 +48,15 @@ const getUserWeatherDataWithIp = async (router: NextRouter, setHasApiError: Disp
   }
 };
 
-export { getLongDate, getShortDate, getCurrentTime, getCurrentDateInMilliseconds, getUserWeatherDataWithIp };
+const getUserWeatherDataWithCoord = (router: NextRouter, userLat: number, userLon: number) => {
+  router.replace(`/?ip=yes&coordLat=${userLat}&coordLon=${userLon}`, '/');
+};
+
+export {
+  getLongDate,
+  getShortDate,
+  getCurrentTime,
+  getCurrentDateInMilliseconds,
+  getUserWeatherDataWithIp,
+  getUserWeatherDataWithCoord
+};

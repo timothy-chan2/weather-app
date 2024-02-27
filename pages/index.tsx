@@ -13,7 +13,13 @@ import Navbar from '../components/navbar';
 import LoadingDots from '../components/loadingDots';
 import ApiErrorMessage from '../components/apiErrorMessage';
 
-import { getLongDate, getCurrentTime, getCurrentDateInMilliseconds, getUserWeatherDataWithIp } from '../helpers/selectors';
+import {
+  getLongDate,
+  getCurrentTime,
+  getCurrentDateInMilliseconds,
+  getUserWeatherDataWithIp,
+  getUserWeatherDataWithCoord
+} from '../helpers/selectors';
 
 import styles from '../styles/Home.module.css';
 
@@ -48,10 +54,6 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
       setUserLon(lon);
     }
   }, [region]);
-  
-  const getUserWeatherDataWithCoord = () => {
-    router.replace(`/?ip=yes&coordLat=${userLat}&coordLon=${userLon}`, '/');
-  };
 
   // Get the current date
   const currentLongDate = getLongDate();
@@ -72,7 +74,7 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
 
   useEffect(() => {
     if (userLat) {
-      getUserWeatherDataWithCoord();
+      getUserWeatherDataWithCoord(router, userLat, userLon);
     } else {
       getUserWeatherDataWithIp(router, setHasApiError);
     }
