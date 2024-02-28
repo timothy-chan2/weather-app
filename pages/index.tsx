@@ -18,7 +18,8 @@ import {
   getCurrentTime,
   getCurrentDateInMilliseconds,
   getUserWeatherDataWithIp,
-  getUserWeatherDataWithCoord
+  getUserWeatherDataWithCoord,
+  saveWeather
 } from '../helpers/selectors';
 
 import styles from '../styles/Home.module.css';
@@ -39,12 +40,28 @@ type Props = {
 
 export default function Home({ weatherSummary, city, region, lat, lon }) {
   const router = useRouter();
+  const [hasApiError, setHasApiError] = useState(false);
   const {
     userCity, setUserCity,
     userRegion, setUSerRegion,
     userLat, setUserLat,
     userLon, setUserLon
   } = useLocationContext();
+
+  const currentLongDate = getLongDate();
+  const currentTime = getCurrentTime();
+  const currentDateInMilliseconds = getCurrentDateInMilliseconds();
+  const roundedTemp = Math.round(weatherSummary.temp);
+
+  const weatherData: WeatherData = {
+    fullDate: currentDateInMilliseconds,
+    date: currentLongDate,
+    time: currentTime,
+    city: userCity,
+    region: userRegion,
+    temp: roundedTemp,
+    description: weatherSummary.description
+  };
 
   useEffect(() => {
     if (region) {
@@ -54,13 +71,6 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
       setUserLon(lon);
     }
   }, [region]);
-
-  // Get the current date
-  const currentLongDate = getLongDate();
-  const currentTime = getCurrentTime();
-  const currentDateInMilliseconds = getCurrentDateInMilliseconds();
-
-  const [hasApiError, setHasApiError] = useState(false);
 
   useEffect(() => {
     if (city === 'error2') {
@@ -79,49 +89,6 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
       getUserWeatherDataWithIp(router, setHasApiError);
     }
   }, []);
-
-  let saveWeather;
-  let roundedTemp;
-
-  if (hasApiError === false) {
-    // Calculate the temperature rounded to the nearest integer
-    roundedTemp = Math.round(weatherSummary.temp);
-
-    saveWeather = () => {
-      const weatherData: WeatherData = {
-        fullDate: currentDateInMilliseconds,
-        date: currentLongDate,
-        time: currentTime,
-        city: userCity,
-        region: userRegion,
-        temp: roundedTemp,
-        description: weatherSummary.description
-      };
-
-      const previousDataString = localStorage.getItem("weatherHistory");
-      let previousData = JSON.parse(previousDataString);
-      let isDuplicate = false;
-
-      if (previousData === null) {
-        previousData = [];
-      }
-
-      if (previousData.length > 0) {
-        const lastWeatherData = previousData[previousData.length - 1];
-        
-        if (lastWeatherData.fullDate === currentDateInMilliseconds) {
-          isDuplicate = true;
-          alert("Weather data is already saved.");
-        }
-      }
-      
-      if (isDuplicate === false) {
-        previousData.push(weatherData);
-        localStorage.setItem("weatherHistory", JSON.stringify(previousData));
-        alert("Weather saved successfully!");
-      }
-    };
-  }
 
   return (
     <>
@@ -184,7 +151,12 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
                 )}
               </section>
               <section className={styles.btnContainer}>
-                <button onClick={saveWeather} className={`${styles.save} ${styles.btn}`}>Save Info</button>
+                <button
+                  onClick={() => saveWeather(weatherData, currentDateInMilliseconds)}
+                  className={`${styles.save} ${styles.btn}`}
+                >
+                  Save Info
+                </button>
                 <Link href="/history">
                   <button className={`${styles.history} ${styles.btn}`}>My History</button>
                 </Link>

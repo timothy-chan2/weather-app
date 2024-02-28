@@ -52,11 +52,37 @@ const getUserWeatherDataWithCoord = (router: NextRouter, userLat: number, userLo
   router.replace(`/?ip=yes&coordLat=${userLat}&coordLon=${userLon}`, '/');
 };
 
+const saveWeather = (weatherData: WeatherData, currentDateInMilliseconds: number) => {
+  const previousDataString = localStorage.getItem('weatherHistory');
+  let previousData = JSON.parse(previousDataString);
+  let isDuplicate = false;
+
+  if (previousData === null) {
+    previousData = [];
+  }
+
+  if (previousData.length > 0) {
+    const lastWeatherData = previousData[previousData.length - 1];
+    
+    if (lastWeatherData.fullDate === currentDateInMilliseconds) {
+      isDuplicate = true;
+      alert('Weather data is already saved.');
+    }
+  }
+  
+  if (isDuplicate === false) {
+    previousData.push(weatherData);
+    localStorage.setItem('weatherHistory', JSON.stringify(previousData));
+    alert('Weather saved successfully!');
+  }
+};
+
 export {
   getLongDate,
   getShortDate,
   getCurrentTime,
   getCurrentDateInMilliseconds,
   getUserWeatherDataWithIp,
-  getUserWeatherDataWithCoord
+  getUserWeatherDataWithCoord,
+  saveWeather
 };
