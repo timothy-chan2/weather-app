@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import '../types/types';
+import '../types/weatherAppTypes';
 
 import Head from 'next/head';
 import Link from 'next/link';

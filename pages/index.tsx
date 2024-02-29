@@ -1,5 +1,5 @@
 import type { GetServerSideProps } from 'next';
-import '../types/types';
+import '../types/weatherAppTypes';
 
 import { useState, useEffect } from 'react';
 import { useLocationContext } from '../context/location';
