@@ -1,5 +1,6 @@
 import type { GetServerSideProps } from 'next';
 import '../types/weatherAppTypes';
+import '../types/indexTypes';
 
 import { useState, useEffect } from 'react';
 import { useLocationContext } from '../context/location';
@@ -23,20 +24,6 @@ import {
 } from '../helpers/selectors';
 
 import styles from '../styles/Home.module.css';
-
-type WeatherSummary = {
-  temp: number,
-  description: string,
-  icon: string
-};
-
-type Props = {
-  weatherSummary: WeatherSummary,
-  city: string,
-  region: string,
-  lat: number,
-  lon: number
-};
 
 export default function Home({ weatherSummary, city, region, lat, lon }) {
   const router = useRouter();

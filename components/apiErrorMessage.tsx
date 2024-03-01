@@ -1,10 +1,7 @@
+import '../types/apiErrorMessageTypes';
 import styles from '../styles/ApiErrorMessage.module.css';
 
-type Props = {
-  apiName: string
-};
-
-const ApiErrorMessage = (props: Props) => {
+const ApiErrorMessage = (props: ApiErrorMessageProps) => {
   return (
     <article>
       <p className={styles.error}>

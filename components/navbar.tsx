@@ -1,3 +1,5 @@
+import '../types/navbarTypes';
+
 import { useState, useEffect } from 'react';
 
 import Link from 'next/link';
@@ -6,12 +8,7 @@ import LoadingDots from '../components/loadingDots';
 
 import styles from '../styles/Navbar.module.css';
 
-type Props = {
-  pageTitle: string,
-  fontColor: string
-};
-
-const Navbar = (props: Props) => {
+const Navbar = (props: NavbarProps) => {
   let navStyles: string;
   const [isLoading, setIsLoading] = useState(false);
   

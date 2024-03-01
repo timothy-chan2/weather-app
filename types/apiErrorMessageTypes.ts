@@ -1,0 +1,3 @@
+type ApiErrorMessageProps = {
+  apiName: string
+};

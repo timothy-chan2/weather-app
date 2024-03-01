@@ -1,12 +1,9 @@
+import '../types/loadingDotsTypes';
 import styles from '../styles/LoadingDots.module.css';
-
-type Props = {
-  dotColor: string
-};
 
 // The LoadingDots component shows three dots that grow and shrink
 // at different times while the project cards are loading
-const LoadingDots = (props: Props) => {
+const LoadingDots = (props: LoadingDotsProps) => {
   let loaderDotStyles: string;
   
   if (props.dotColor === 'purple') {

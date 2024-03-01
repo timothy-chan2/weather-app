@@ -1,0 +1,3 @@
+type LoadingDotsProps = {
+  dotColor: string
+};
