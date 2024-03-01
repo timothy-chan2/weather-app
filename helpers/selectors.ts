@@ -41,7 +41,11 @@ const getUserWeatherDataWithIp = async (router: NextRouter, setHasApiError: Disp
   try {
     const ipifyResponse = await fetch('https://api.ipify.org/?format=json');
     const userIp = await ipifyResponse.json();
-    router.replace(`/?ip=${userIp.ip}`, '/');
+    if (userIp.ip) {
+      router.replace(`/?ip=${userIp.ip}`, '/');
+    } else {
+      getUserWeatherDataWithIp(router, setHasApiError);
+    }
   } catch {
     setHasApiError(true);
     console.log('API error 1');
