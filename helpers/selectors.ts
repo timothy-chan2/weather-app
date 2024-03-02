@@ -10,7 +10,7 @@ const getLongDate = (dateObject = new Date()) => {
   return longDate;
 };
 
-const getShortDate = (dateObject: Date) => {
+const getShortDate = (dateObject = new Date()) => {
   const padTo2Digits = (num: number) => {
     return num.toString().padStart(2, '0');
   };

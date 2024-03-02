@@ -106,7 +106,7 @@ export const getServerSideProps = async (context) => {
   let  { date } = context.query;
 
   if (date === undefined) {
-    const todaysDate = getShortDate(new Date());
+    const todaysDate = getShortDate();
     date = todaysDate;
   }
 
