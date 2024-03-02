@@ -89,15 +89,17 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
           pageTitle='WeatherApp'
           fontColor='dark purple'
         />
+        {/* Source: https://images.unsplash.com/photo-1585508889431-a1d0d9c5a324 */}
         <Image
-          src='https://images.unsplash.com/photo-1585508889431-a1d0d9c5a324'
+          src='/images/mobile-bg-image-resized.jpg'
           alt='Background image: Mist in the forest'
           className={styles.backgroundImg}
           fill
           sizes='(max-width: 600px) 100vw'
         />
+        {/* Source: https://images.unsplash.com/photo-1561484930-998b6a7b22e8 */}
         <Image
-          src='https://images.unsplash.com/photo-1561484930-998b6a7b22e8'
+          src='/images/desktop-bg-image-resized.jpg'
           alt='Background image: A mountain behind a calm lake'
           className={styles.backgroundImg2}
           fill
