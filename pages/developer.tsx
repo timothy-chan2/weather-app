@@ -53,7 +53,7 @@ const Developer = () => {
             <h2 className={styles.developerName}>Timothy Chan</h2>
             <a href='https://linkedin.com/in/timothychan2' target='_blank' rel='noreferrer'>
               <Image
-                src='/images/In-White-34.png'
+                src='/images/in-white-34.png'
                 alt='LinkedIn logo'
                 aria-label='LinkedIn logo'
                 width='44'
