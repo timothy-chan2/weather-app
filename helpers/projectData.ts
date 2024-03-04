@@ -10,7 +10,7 @@ const projects = [
   },
   {
     title: 'Trash Panda MTL',
-    imgUrl: 'images/trash-panda.gif',
+    imgUrl: 'images/trash-panda-resized.gif',
     linkUrl: 'https://github.com/andres039/Upcycle-Cradle-Montreal',
     desc: 'A web app developed as part of a team that allows Montrealers to extend the life of discarded furniture by displaying their location on an interactive map. It encourages sustainability by reducing the amount of useful items going to the landfill. My responsibility: Main developer working on the front end.',
     fStack: 'React JS, JavaScript, SCSS, Leaflet, React-Leaflet, Axios',
@@ -18,7 +18,7 @@ const projects = [
   },
   {
     title: 'TinyApp',
-    imgUrl: 'images/tinyapp.gif',
+    imgUrl: 'images/tinyapp-resized.gif',
     linkUrl: 'https://github.com/timothy-chan2/tinyapp',
     desc: 'A full stack web app that allows users to shorten long URLs. Users can select between dark/light theme.',
     bStack: 'Node JS, Express JS, EJS, bcryptjs, cookie-session'
