@@ -91,7 +91,7 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
         />
         {/* Source: https://images.unsplash.com/photo-1585508889431-a1d0d9c5a324 */}
         <Image
-          src='/images/mobile-bg-image-resized.jpg'
+          src='/images/mobile-bg-image-resized-compressed.jpg'
           alt='Background image: Mist in the forest'
           className={styles.backgroundImg}
           fill
@@ -99,7 +99,7 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
         />
         {/* Source: https://images.unsplash.com/photo-1561484930-998b6a7b22e8 */}
         <Image
-          src='/images/desktop-bg-image-resized.jpg'
+          src='/images/desktop-bg-image-resized-compressed.jpg'
           alt='Background image: A mountain behind a calm lake'
           className={styles.backgroundImg2}
           fill
