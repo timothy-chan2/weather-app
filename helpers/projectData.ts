@@ -25,7 +25,7 @@ const projects = [
   },
   {
     title: 'My Older Projects',
-    imgUrl: 'images/scheduler.png',
+    imgUrl: 'images/scheduler-resized.jpg',
     linkUrl: 'https://spac3stagram.onrender.com/developer',
     desc: 'The older projects are found on my previous portfolio website. Please feel free to have a look.'
   }
