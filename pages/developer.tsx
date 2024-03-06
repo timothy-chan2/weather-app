@@ -36,7 +36,7 @@ const Developer = () => {
       <div className={styles.developer}>
         <Image
           className={styles.bgImage}
-          src='/images/trunk-ring.jpg'
+          src='/images/trunk-ring-compressed.jpg'
           alt=''
           width='360'
           height='740'
