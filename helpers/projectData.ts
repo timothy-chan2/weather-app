@@ -1,7 +1,7 @@
 const projects = [
   {
     title: 'Spacestagram',
-    imgUrl: 'images/spacestagram.png',
+    imgUrl: 'images/spacestagram-compressed.png',
     linkUrl: 'https://spac3stagram.onrender.com',
     desc: 'Deployed a web app to view photos from NASA’s Astronomy Picture of the Day image API with mobile first responsive design. The website can be used to increase people’s interest in science/technology. Users can select the date range as well as like and unlike any of the photos. I wrote tests using Jest.',
     fStack: 'React JS, JavaScript, HTML, CSS, sassy-datepicker, Axios',
@@ -25,7 +25,7 @@ const projects = [
   },
   {
     title: 'My Older Projects',
-    imgUrl: 'images/scheduler-resized.jpg',
+    imgUrl: 'images/scheduler-resized-compressed.jpg',
     linkUrl: 'https://spac3stagram.onrender.com/developer',
     desc: 'The older projects are found on my previous portfolio website. Please feel free to have a look.'
   }
