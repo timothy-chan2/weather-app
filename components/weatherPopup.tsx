@@ -1,17 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Dispatch, SetStateAction } from 'react';
 import styles from '../styles/WeatherPopup.module.css';
 
 interface ModalProps {
   isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
   children: React.ReactNode;
 };
 
-const WeatherPopup = ({ isOpen, children }: ModalProps) => {
-  const [isModalOpen, setModalOpen] = useState(isOpen);
+const WeatherPopup = ({ isOpen, setIsOpen, children }: ModalProps) => {
   const modalRef = useRef<HTMLDialogElement | null>(null);
   
   const handleCloseModal = () => {
-    setModalOpen(false);
+    setIsOpen(false);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDialogElement>) => {
@@ -21,19 +21,15 @@ const WeatherPopup = ({ isOpen, children }: ModalProps) => {
   };
 
   useEffect(() => {
-    setModalOpen(isOpen);
-  }, [isOpen]);
-
-  useEffect(() => {
     const modalElement = modalRef.current;
     if (modalElement) {
-      if (isModalOpen) {
+      if (isOpen) {
         modalElement.showModal();
       } else {
         modalElement.close();
       }
     }
-  }, [isModalOpen]);
+  }, [isOpen]);
 
   return (
     <dialog ref={modalRef} onKeyDown={handleKeyDown} className='modal'>
