@@ -13,6 +13,7 @@ import { useRouter } from 'next/router';
 import Navbar from '../components/navbar';
 import LoadingDots from '../components/loadingDots';
 import ApiErrorMessage from '../components/apiErrorMessage';
+import WeatherPopup from '../components/weatherPopup';
 
 import {
   getLongDate,
@@ -28,6 +29,7 @@ import styles from '../styles/Home.module.css';
 export default function Home({ weatherSummary, city, region, lat, lon }) {
   const router = useRouter();
   const [hasApiError, setHasApiError] = useState(false);
+  const [isWeatherModalOpen, setIsWeatherModalOpen] = useState(true);
   const {
     userCity, setUserCity,
     userRegion, setUSerRegion,
@@ -83,7 +85,12 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
         <title>WeatherApp</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <WeatherPopup
+        isOpen={isWeatherModalOpen}
+        setIsOpen={setIsWeatherModalOpen}
+      >
+        <p>Weather data is already saved.</p>
+      </WeatherPopup>
       <main className={styles.container}>
         <Navbar
           pageTitle='WeatherApp'
