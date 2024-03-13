@@ -1,0 +1,26 @@
+.modal {
+  color: var(--light);
+  background: var(--darker);
+  text-align: center;
+  border: 2px solid var(--yellow);
+  border-radius: 8px;
+  padding: 30px 40px;
+}
+
+.modal::backdrop {
+  backdrop-filter: blur(2px);
+}
+
+
+.modalCloseBtn {
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  background: var(--yellow);
+  border: none;
+  cursor: pointer;
+}
+
+.modalCloseBtn:is(:hover, :focus, :active) {
+  background: var(--yellow-hover);
+}

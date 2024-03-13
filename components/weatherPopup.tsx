@@ -32,9 +32,9 @@ const WeatherPopup = ({ isOpen, setIsOpen, children }: ModalProps) => {
   }, [isOpen]);
 
   return (
-    <dialog ref={modalRef} onKeyDown={handleKeyDown} className='modal'>
+    <dialog ref={modalRef} onKeyDown={handleKeyDown} className={styles.modal}>
       {children}
-      <button className='modal-close-btn' onClick={handleCloseModal}>
+      <button className={styles.modalCloseBtn} onClick={handleCloseModal}>
         Close
       </button>
     </dialog>
