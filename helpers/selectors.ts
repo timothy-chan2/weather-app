@@ -56,29 +56,25 @@ const getUserWeatherDataWithCoord = (router: NextRouter, userLat: number, userLo
   router.replace(`/?ip=yes&coordLat=${userLat}&coordLon=${userLon}`, '/');
 };
 
-const saveWeather = (weatherData: WeatherData, currentDateInMilliseconds: number) => {
+const saveWeather = (
+  weatherData: WeatherData,
+  currentDateInMilliseconds: number,
+  weatherModalMessage: string,
+  setIsWeatherModalOpen: Dispatch<SetStateAction<boolean>>
+) => {
   const previousDataString = localStorage.getItem('weatherHistory');
   let previousData = JSON.parse(previousDataString);
-  let isDuplicate = false;
 
   if (previousData === null) {
     previousData = [];
   }
 
-  if (previousData.length > 0) {
-    const lastWeatherData = previousData[previousData.length - 1];
-    
-    if (lastWeatherData.fullDate === currentDateInMilliseconds) {
-      isDuplicate = true;
-      alert('Weather data is already saved.');
-    }
-  }
-  
-  if (isDuplicate === false) {
+  if (weatherModalMessage === 'Weather saved successfully!') {
     previousData.push(weatherData);
     localStorage.setItem('weatherHistory', JSON.stringify(previousData));
-    alert('Weather saved successfully!');
   }
+
+  setIsWeatherModalOpen(true);
 };
 
 export {
