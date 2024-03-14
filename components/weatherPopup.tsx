@@ -4,14 +4,16 @@ import styles from '../styles/WeatherPopup.module.css';
 interface ModalProps {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  setModalMessage: Dispatch<SetStateAction<string>>;
   children: React.ReactNode;
 };
 
-const WeatherPopup = ({ isOpen, setIsOpen, children }: ModalProps) => {
+const WeatherPopup = ({ isOpen, setIsOpen, setModalMessage, children }: ModalProps) => {
   const modalRef = useRef<HTMLDialogElement | null>(null);
   
   const handleCloseModal = () => {
     setIsOpen(false);
+    setModalMessage('Weather data is already saved.');
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDialogElement>) => {

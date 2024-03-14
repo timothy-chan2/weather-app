@@ -29,7 +29,8 @@ import styles from '../styles/Home.module.css';
 export default function Home({ weatherSummary, city, region, lat, lon }) {
   const router = useRouter();
   const [hasApiError, setHasApiError] = useState(false);
-  const [isWeatherModalOpen, setIsWeatherModalOpen] = useState(true);
+  const [isWeatherModalOpen, setIsWeatherModalOpen] = useState(false);
+  const [weatherModalMessage, setWeatherModalMessage] = useState('Weather saved successfully!');
   const {
     userCity, setUserCity,
     userRegion, setUSerRegion,
@@ -88,8 +89,9 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
       <WeatherPopup
         isOpen={isWeatherModalOpen}
         setIsOpen={setIsWeatherModalOpen}
+        setModalMessage={setWeatherModalMessage}
       >
-        <p>Weather data is already saved.</p>
+        <p>{ weatherModalMessage }</p>
       </WeatherPopup>
       <main className={styles.container}>
         <Navbar
@@ -148,7 +150,12 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
               </section>
               <section className={styles.btnContainer}>
                 <button
-                  onClick={() => saveWeather(weatherData, currentDateInMilliseconds)}
+                  onClick={() => saveWeather(
+                    weatherData,
+                    currentDateInMilliseconds,
+                    weatherModalMessage,
+                    setIsWeatherModalOpen
+                  )}
                   className={`${styles.save} ${styles.btn}`}
                 >
                   Save Info
