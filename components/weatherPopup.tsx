@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, Dispatch, SetStateAction } from 'react';
+import { useEffect, useRef, Dispatch, SetStateAction } from 'react';
 import styles from '../styles/WeatherPopup.module.css';
 
 interface ModalProps {
