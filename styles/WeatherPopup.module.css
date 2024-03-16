@@ -19,6 +19,7 @@
   background: var(--yellow);
   border: none;
   cursor: pointer;
+  margin-top: 15px;
 }
 
 .modalCloseBtn:is(:hover, :focus, :active) {
