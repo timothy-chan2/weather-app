@@ -18,7 +18,6 @@ import WeatherPopup from '../components/weatherPopup';
 import {
   getLongDate,
   getCurrentTime,
-  getCurrentDateInMilliseconds,
   getUserWeatherDataWithIp,
   getUserWeatherDataWithCoord,
   saveWeather
@@ -40,11 +39,9 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
 
   const currentLongDate = getLongDate();
   const currentTime = getCurrentTime();
-  const currentDateInMilliseconds = getCurrentDateInMilliseconds();
   const roundedTemp = Math.round(weatherSummary.temp);
 
   const weatherData: WeatherData = {
-    fullDate: currentDateInMilliseconds,
     date: currentLongDate,
     time: currentTime,
     city: userCity,
@@ -152,7 +149,6 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
                 <button
                   onClick={() => saveWeather(
                     weatherData,
-                    currentDateInMilliseconds,
                     weatherModalMessage,
                     setIsWeatherModalOpen
                   )}

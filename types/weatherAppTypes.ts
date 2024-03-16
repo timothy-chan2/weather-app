@@ -1,5 +1,4 @@
 type WeatherData = {
-  fullDate: number,
   date: string,
   time: string,
   city: string,

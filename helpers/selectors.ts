@@ -30,13 +30,6 @@ const getCurrentTime = () => {
   return currentTime;
 };
 
-const getCurrentDateInMilliseconds = () => {
-  const currentDate = new Date();
-  const currentDateInMilliseconds = Date.parse(currentDate.toString());
-
-  return currentDateInMilliseconds;
-};
-
 const getUserWeatherDataWithIp = async (router: NextRouter, setHasApiError: Dispatch<SetStateAction<boolean>>) => {
   try {
     const ipifyResponse = await fetch('https://api.ipify.org/?format=json');
@@ -58,7 +51,6 @@ const getUserWeatherDataWithCoord = (router: NextRouter, userLat: number, userLo
 
 const saveWeather = (
   weatherData: WeatherData,
-  currentDateInMilliseconds: number,
   weatherModalMessage: string,
   setIsWeatherModalOpen: Dispatch<SetStateAction<boolean>>
 ) => {
@@ -81,7 +73,6 @@ export {
   getLongDate,
   getShortDate,
   getCurrentTime,
-  getCurrentDateInMilliseconds,
   getUserWeatherDataWithIp,
   getUserWeatherDataWithCoord,
   saveWeather
