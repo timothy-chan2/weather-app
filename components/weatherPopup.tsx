@@ -1,12 +1,7 @@
-import { useEffect, useRef, Dispatch, SetStateAction } from 'react';
-import styles from '../styles/WeatherPopup.module.css';
+import type { ModalProps } from '../types/weatherPopupTypes';
 
-interface ModalProps {
-  isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
-  setModalMessage: Dispatch<SetStateAction<string>>;
-  children: React.ReactNode;
-};
+import { useEffect, useRef } from 'react';
+import styles from '../styles/WeatherPopup.module.css';
 
 const WeatherPopup = ({ isOpen, setIsOpen, setModalMessage, children }: ModalProps) => {
   const modalRef = useRef<HTMLDialogElement | null>(null);
