@@ -21,18 +21,7 @@
   border-radius: 15px;
 }
 
-.city {
-  margin: 0 0 1rem;
-  line-height: 1.15;
-  font-size: 2.3rem;
-  text-align: center;
-}
-
 @media (max-width: 600px) {
-  .city {  
-    font-size: 2rem;
-  }
-
   .backgroundImg {
     display: block;
   }
@@ -43,10 +32,6 @@
 }
 
 @media (min-width: 600px) {
-  .city {  
-    font-size: 3rem;
-  }
-
   .backgroundImg {
     display: none;
   }
@@ -56,99 +41,8 @@
   }
 }
 
-.date {
-  font-size: 1.1rem;
-}
-
-.conditions {
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-}
-
-.tempContainer {
-  text-align: center;
-}
-
-.temp {
-  font-size: 2.5rem;
-}
-
-.celcius {
-  font-size: 1.5rem;
-}
-
-.desc {
-  text-transform: capitalize;
-}
-
-.btnContainer {
-  display: flex;
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
-
-@media (max-width: 360px) {
-  .btnContainer {
-    flex-direction: column;
-  }
-}
-
-.btn {
-  padding: 15px 30px;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.save {
-  background: var(--green);
-}
-
-.save:is(:hover, :focus, :active) {
-  background: var(--green-hover);
-}
-
-.history {
-  background: var(--yellow);
-}
-
-.history:is(:hover, :focus, :active) {
-  background: var(--yellow-hover);
-}
-
 @media (max-height: 500px) {
   .textContainer {
     padding: 1.5em;
-  }
-  
-  .city {  
-    font-size: 2rem;
-    margin: 0;
-  }
-
-  .temp {
-    font-size: 2rem;
-    margin-block-start: 0.1em;
-    margin-block-end: 0.1em;
-  }
-
-  .celcius {
-    font-size: 1rem;
-  }
-
-  .desc, .date {
-    margin-block-start: 0em;
-    margin-block-end: 0em;
-  }
-
-  .descImg {
-    width: 100px;
-    height: 100px;
-  }
-
-  .btnContainer {
-    margin-top: 0.5rem;
   }
 }
