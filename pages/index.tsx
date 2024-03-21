@@ -6,21 +6,17 @@ import { useState, useEffect } from 'react';
 import { useLocationContext } from '../context/location';
 
 import Head from 'next/head';
-import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import Navbar from '../components/navbar';
-import LoadingDots from '../components/loadingDots';
 import ApiErrorMessage from '../components/apiErrorMessage';
 import WeatherPopup from '../components/weatherPopup';
+import Weather from '../components/weather';
 
 import {
-  getLongDate,
-  getCurrentTime,
   getUserWeatherDataWithIp,
-  getUserWeatherDataWithCoord,
-  saveWeather
+  getUserWeatherDataWithCoord
 } from '../helpers/selectors';
 
 import styles from '../styles/Home.module.css';
@@ -31,24 +27,11 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
   const [isWeatherModalOpen, setIsWeatherModalOpen] = useState(false);
   const [weatherModalMessage, setWeatherModalMessage] = useState('Weather saved successfully!');
   const {
-    userCity, setUserCity,
-    userRegion, setUSerRegion,
+    setUserCity,
+    setUSerRegion,
     userLat, setUserLat,
     userLon, setUserLon
   } = useLocationContext();
-
-  const currentLongDate = getLongDate();
-  const currentTime = getCurrentTime();
-  const roundedTemp = Math.round(weatherSummary.temp);
-
-  const weatherData: WeatherData = {
-    date: currentLongDate,
-    time: currentTime,
-    city: userCity,
-    region: userRegion,
-    temp: roundedTemp,
-    description: weatherSummary.description
-  };
 
   useEffect(() => {
     if (region) {
@@ -116,51 +99,11 @@ export default function Home({ weatherSummary, city, region, lat, lon }) {
             <ApiErrorMessage apiName='weather' />
           }
           {hasApiError === false &&
-            <>
-              <section>
-                {userCity ? (
-                  <h2 className={styles.city}>{ userCity }, { userRegion }</h2>
-                ) : (
-                  <h2 className={styles.city}>...</h2>
-                )}
-                <p className={styles.date}>{ currentLongDate }</p>
-              </section>
-              <section className={styles.conditions}>
-                <section className={styles.tempContainer}>
-                  <h3 className={styles.temp}>
-                    { roundedTemp }<sup className={styles.celcius}>°C</sup>
-                  </h3>
-                  <p className={styles.desc}>{ weatherSummary.description }</p>
-                </section>
-                {weatherSummary.icon === '' ? (
-                  <LoadingDots dotColor='light blue' />
-                ) : (
-                  <Image
-                    src={`https://openweathermap.org/img/wn/${weatherSummary.icon}@4x.png`}
-                    alt={`${ weatherSummary.description } icon`}
-                    className={styles.descImg}
-                    width='150'
-                    height='150'
-                    priority
-                  />
-                )}
-              </section>
-              <section className={styles.btnContainer}>
-                <button
-                  onClick={() => saveWeather(
-                    weatherData,
-                    weatherModalMessage,
-                    setIsWeatherModalOpen
-                  )}
-                  className={`${styles.save} ${styles.btn}`}
-                >
-                  Save Info
-                </button>
-                <Link href="/history">
-                  <button className={`${styles.history} ${styles.btn}`}>My History</button>
-                </Link>
-              </section>
-            </>
+            <Weather
+              weatherSummary={weatherSummary}
+              weatherModalMessage={weatherModalMessage}
+              setIsWeatherModalOpen={setIsWeatherModalOpen}
+            />
           }
         </section>
         
