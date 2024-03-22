@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction } from 'react';
+import type { WeatherProps } from '../types/weatherTypes';
+// import { Dispatch, SetStateAction } from 'react';
 import { useLocationContext } from '../context/location';
 
 import Link from 'next/link';
@@ -14,11 +15,11 @@ import {
 
 import styles from '../styles/Weather.module.css';
 
-type WeatherProps = {
-  weatherSummary: any,
-  weatherModalMessage: string,
-  setIsWeatherModalOpen: Dispatch<SetStateAction<boolean>>
-};
+// type WeatherProps = {
+//   weatherSummary: any,
+//   weatherModalMessage: string,
+//   setIsWeatherModalOpen: Dispatch<SetStateAction<boolean>>
+// };
 
 const Weather = (props: WeatherProps) => {
   const {
