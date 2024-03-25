@@ -1,7 +1,13 @@
 import { Dispatch, SetStateAction } from 'react';
 
+type WeatherSummary = {
+  temp: number,
+  description: string,
+  icon: string
+};
+
 type WeatherProps = {
-  weatherSummary: any,
+  weatherSummary: WeatherSummary,
   weatherModalMessage: string,
   setIsWeatherModalOpen: Dispatch<SetStateAction<boolean>>
 };
