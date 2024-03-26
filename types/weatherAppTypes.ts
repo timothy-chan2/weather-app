@@ -1,8 +1,5 @@
-type WeatherData = {
-  date: string,
-  time: string,
-  city: string,
-  region: string,
+type WeatherSummary = {
   temp: number,
-  description: string
+  description: string,
+  icon: string
 };
