@@ -1,4 +1,4 @@
-import type { WeatherProps } from '../types/weatherTypes';
+import type { WeatherProps, WeatherData } from '../types/weatherTypes';
 import { useLocationContext } from '../context/location';
 
 import Link from 'next/link';

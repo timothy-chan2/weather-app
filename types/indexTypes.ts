@@ -1,9 +1,3 @@
-type WeatherSummary = {
-  temp: number,
-  description: string,
-  icon: string
-};
-
 type Props = {
   weatherSummary: WeatherSummary,
   city: string,
