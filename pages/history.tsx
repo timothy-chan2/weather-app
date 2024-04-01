@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
 import '../types/weatherAppTypes';
+import type { WeatherData } from '../types/weatherTypes';
+import { useState, useEffect } from 'react';
 
 import Head from 'next/head';
 import Link from 'next/link';

@@ -1,5 +1,6 @@
 import { NextRouter } from 'next/router';
 import { Dispatch, SetStateAction } from 'react';
+import type { WeatherData } from '../types/weatherTypes';
 
 const getLongDate = (dateObject = new Date()) => {
   const day = dateObject.getDate();
