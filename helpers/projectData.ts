@@ -1,12 +1,19 @@
 const projects = [
   {
+    title: 'Newsletter Sign Up with Success Message',
+    imgUrl: 'images/newsletter-sign-up-form-compressed.png',
+    linkUrl: 'https://github.com/timothy-chan2/newsletter-sign-up-with-success-message',
+    desc: 'Deployed solution to a front-end coding challenge to build out a newsletter form and get it looking as close to the design as possible. The live site URL is found under the Links section of the README.',
+    fStack: 'JavaScript, HTML, CSS',
+    priority: true
+  },
+  {
     title: 'Spacestagram',
     imgUrl: 'images/spacestagram-compressed.png',
     linkUrl: 'https://spac3stagram.onrender.com',
     desc: 'Deployed a web app to view photos from NASA’s Astronomy Picture of the Day image API with mobile first responsive design. The website can be used to increase people’s interest in science/technology. Users can select the date range as well as like and unlike any of the photos. I wrote tests using Jest. Note: The link is to my older version of Spacestagram. It can take up to 30 seconds for the data to appear because the free instance will spin down with inactivity.',
     fStack: 'React JS, JavaScript, HTML, CSS, sassy-datepicker, Axios',
-    bStack: 'Node JS, Express JS, Axios, dotenv',
-    priority: true
+    bStack: 'Node JS, Express JS, Axios, dotenv'
   },
   {
     title: 'Trash Panda MTL',
