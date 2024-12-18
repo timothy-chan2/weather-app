@@ -64,7 +64,7 @@ const Spacestagram = ({ apodInfo }) => {
           />
         </header>
         <main>
-          <h2 className={styles.tagline}>Brought to you by NASA's Astronomy Picture of the Day (APOD) API</h2>
+          <h2 className={styles.tagline}>Brought to you by NASA's Astronomy Picture of the Day API</h2>
           {apodInfo === 'error' &&
             <ApiErrorMessage apiName='NASA' />
           }
