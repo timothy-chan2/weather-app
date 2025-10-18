@@ -113,8 +113,16 @@ export const getServerSideProps = async (context) => {
   const apiKey = process.env.NASA_API_KEY;
   const url = `https://api.nasa.gov/planetary/apod?start_date=${date}&api_key=${apiKey}`;
   let apodInfo;
+  
+  const controller = new AbortController();
+  const { signal } = controller;
+  const timeoutId = setTimeout(() => {
+    controller.abort();
+  }, 9000);
+  
   try {
-    const apodData = await fetch(url);
+    const apodData = await fetch(url, { signal });
+    clearTimeout(timeoutId);
     apodInfo = await apodData.json();
   } catch {
     apodInfo = 'error';
